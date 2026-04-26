@@ -55,6 +55,17 @@ Optimize:
 Save to profile/linkedin.md
 ```
 
+## P003 — 2026-04-26 | Job Scraping / API Strategy
+
+**Prompt**:
+> to scrap or thru api calls to identify as a recruiter, and its costs, but i want to apply for jobs
+
+**Context**: User wants to automate job discovery — scraping vs. official APIs, understand costs, goal is to surface relevant roles and apply.
+
+**Output**: See `job-sources/scraping.md` for full analysis of scraping vs. API options, costs, and recommended approach.
+
+---
+
 ## Evidence Generation Prompt Template
 
 ```

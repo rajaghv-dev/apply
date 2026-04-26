@@ -29,6 +29,29 @@
 
 ---
 
+## Session 2 — 2026-04-26
+
+**Goal**: Add job sources — company career pages, aggregators, search strategy by region.
+
+**Done**:
+- Created `job-sources/company-careers.md` — Big Tech, EDA/Semicon, Research Labs, AI, Legal Tech, FinTech companies with direct career URLs; covers Switzerland, UK, Germany, EU, India
+- Created `job-sources/aggregators.md` — global, Europe, Switzerland, UK, Germany/DACH, Netherlands, India, plus specialist boards (semiconductor, AI, legal tech, fintech)
+- Created `job-sources/search-strategy.md` — weekly search routine (Tier 1/2/3), LinkedIn saved search templates per domain, keyword cheat sheet, location filter reference, cold outreach DM template
+- Pushed to GitHub
+
+**Open / Next Session**:
+- [ ] Build job scraper / API tool to pull live listings into job-tracker (see P003 — user asked about scraping vs API costs)
+- [ ] Fill in LinkedIn profile copy in `profile/linkedin.md`
+- [ ] Add first real JD to `gap-analysis/jobs/` and run gap analysis
+- [ ] Map evidence artifacts in `evidence/projects.md`
+
+**Key decisions**:
+- job-sources/ is a new top-level directory
+- Aggregators split by region for fast lookup
+- Semiconductor specialist boards included (IEEE, SemiEngineering, ChipDesignJobs, EETimes)
+
+---
+
 ## Session Template (copy for each new session)
 
 ## Session N — YYYY-MM-DD

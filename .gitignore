@@ -1,3 +1,10 @@
+# Python virtualenv
+.apply/
+venv/
+.venv/
+__pycache__/
+*.pyc
+
 # Sensitive — never commit
 *.env
 secrets/
