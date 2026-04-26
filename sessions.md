@@ -102,6 +102,27 @@
 
 ---
 
+## Session 5 — 2026-04-26
+
+**Goal**: Write full system architecture document + priority to-do list. Move all memory/context into repo (nothing on local machine only).
+
+**Done**:
+- Created `ARCHITECTURE.md` — 11-section architecture doc covering: system overview, full ASCII component diagram, data model (SkillNode/ProfileSkill/RoleNode/DomainNode/JD/Application), 5 processing flows, ontology graph properties (DAG, decay, domain bridges), 6 open design questions with options + recommendations, component status table, file dependency map, 4-phase build plan, tech choices rationale, 8 review questions for Raja
+- Created `TODO.md` — prioritized to-do list (P0/P1/P2/P3 tiers)
+- Moved Claude memory files into `_memory/` inside the repo (nothing left on local machine only)
+- Updated `README.md` to include ARCHITECTURE.md and TODO.md references
+
+**Open / Next Session**:
+- [ ] Raja to review ARCHITECTURE.md — answer the 8 Review Questions
+- [ ] Raja to answer `profile/questionnaire.md` — at minimum Section A + C (unlocks everything)
+- [ ] Decide on Q2 (JD parsing: regex vs LLM) and Q4 (NetworkX graph traversal) before Phase 2 build
+
+**Key decisions**:
+- All state lives in Git — no local-machine-only files
+- ARCHITECTURE.md is the canonical system reference; update it when design changes
+
+---
+
 ## Session Template (copy for each new session)
 
 ## Session N — YYYY-MM-DD

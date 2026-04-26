@@ -24,6 +24,33 @@ All prompts used with Claude in this project, indexed for reuse and audit.
 
 ---
 
+## P004 — 2026-04-26 | Ontology Strategy
+
+**Prompt**:
+> do u think ontology can help here? then whats the strategy n usefulness?
+
+**Output**: ontology/README.md (strategy + 6 use cases + 3-phase plan), skills-graph.yaml (45+ nodes), roles-graph.yaml (14 clusters), domains.yaml (8 domains + unique bridges), tools/matcher.py (JD scorer), profile/my-profile.yaml (stub).
+
+---
+
+## P005 — 2026-04-26 | Architecture Document
+
+**Prompt**:
+> add to the context of this repo in enough detail n for me to review, and come up with arch
+
+**Output**: ARCHITECTURE.md — 11 sections covering system overview, ASCII component diagram, data model, 5 processing flows, ontology graph properties, 6 open design questions with options + recommendations, component status table, file dependency map, 4-phase build plan, tech rationale, 8 review questions.
+
+---
+
+## P006 — 2026-04-26 | Priority TODO + Repo Consolidation
+
+**Prompt**:
+> come up with the priority to do list now, and update session n memory md files in the repo accordingly, make all these files as part of the repo, dont leave anything to local machine.
+
+**Output**: TODO.md (P0/P1/P2/P3 tiers + done list), _memory/ directory in repo (user-profile, project-apply-repo, session-protocol, arch-decisions, open-questions), README.md fully updated with all new files.
+
+---
+
 ## Gap Analysis Prompt Template
 
 Paste this at the start of a gap analysis session:
