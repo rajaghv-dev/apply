@@ -1,0 +1,15 @@
+# Sensitive — never commit
+*.env
+secrets/
+private/
+*.key
+*.pem
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
