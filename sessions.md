@@ -150,6 +150,35 @@
 
 ---
 
+## Session 7 — 2026-04-26
+
+**Goal**: Comprehensive update of all session/memory/MD files for detailed review.
+
+**Done**:
+- `context.md` — full rewrite: identity, 10-domain table, system purpose, flywheel diagram, complete file map (abbreviated), current blockers, what's built
+- `TODO.md` — full rewrite: P0 (2 items), P1 (7 items), P2 (20 items), P3 (9 items), Someday (5), Done log (40+ items ticked off across all 7 sessions)
+- `README.md` — full rewrite: system summary table, current state section, full annotated file tree, matcher usage, token-reduction load guide
+- `_memory/project-apply-repo.md` — full file map updated to Session 7 state (all new dirs/files)
+- `_memory/arch-decisions.md` — extended to AD-12 (added AD-09: lesson plans as driver, AD-10: second brain flywheel, AD-11: 10 domains, AD-12: content channel priority)
+- `_memory/open-questions.md` — extended to Q12 (added Q9: lesson plan priority, Q10: content channel comfort, Q11: OS project focus, Q12: domain depth ranking)
+- `_memory/user-profile.md` — updated with 10 domains, collaboration style, what's blocked
+- `_memory/session-protocol.md` — updated load guide with all new file types, end-of-session checklist, token budget guidance
+- `_memory/MEMORY-INDEX.md` — updated index
+- Local Claude memory (`~/.claude/...`) — synced to match in-repo copies
+
+**Open / Next Session**:
+- [ ] **P0-1**: Fill `profile/my-profile.yaml` — skill levels (20–30 min) — NOTHING WORKS WITHOUT THIS
+- [ ] **P0-2**: Answer `profile/questionnaire.md` Sections A+C — target roles + geography (15 min)
+- [ ] **P1-1**: Pick one lesson plan and start it — recommend LP-001 (RAG) or LP-003 (cocotb)
+- [ ] **P1-7**: Answer `_memory/open-questions.md` Q1–Q12 — shapes Phase 2 build
+
+**Key decisions**:
+- context.md is now the canonical stable reference (no ephemeral state in it)
+- TODO.md is the single source of truth for what to do next
+- _memory/ files are fully updated — next session cold-starts cleanly from context.md + sessions.md
+
+---
+
 ## Session Template (copy for each new session)
 
 ## Session N — YYYY-MM-DD
