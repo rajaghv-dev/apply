@@ -52,6 +52,31 @@
 
 ---
 
+## Session 3 — 2026-04-26
+
+**Goal**: Gap analysis of the system itself; identify what's missing to enable high-value job matching.
+
+**Done**:
+- Created `gaps-and-improvements.md` — full audit of 10 gaps (GAP-01 through GAP-10) + 5 system improvements, priority order table, and top 5 highest-leverage questions
+- Created `profile/questionnaire.md` — structured question set (7 sections: identity, experience by domain, target roles, LinkedIn baseline, evidence inventory, network map, differentiators)
+- Created `profile/market-scan.md` — template to run JD keyword frequency analysis + salary benchmarks
+- Created `network/contacts.md` — contact map + referral outreach template
+- Created `interview/prep.md` — STAR story bank, technical deep-dives by domain, company research template
+- Created `resume/README.md` — resume cluster strategy + ATS checklist
+
+**Open / Next Session**:
+- [ ] HIGHEST PRIORITY: User to answer `profile/questionnaire.md` (even just Section A+C unlocks everything)
+- [ ] Run market scan: pull 20 real JDs → fill `profile/market-scan.md`
+- [ ] Pull LinkedIn baseline: SSI score, profile views, InMails → fill `profile/linkedin.md`
+- [ ] Build the job scraper (`tools/job-scraper.py`)
+
+**Key decisions**:
+- Skill scoring upgraded to include recency + scale (not just level)
+- Gap match score formula: (STRONG×3 + PARTIAL×1) / (total reqs × 3) × 100; target ≥60% before applying
+- Resume strategy: clusters by domain, not one-size CV
+
+---
+
 ## Session Template (copy for each new session)
 
 ## Session N — YYYY-MM-DD
