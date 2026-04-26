@@ -77,6 +77,31 @@
 
 ---
 
+## Session 4 — 2026-04-26
+
+**Goal**: Design and build ontology layer for skill bridging + JD matching.
+
+**Done**:
+- Created `ontology/README.md` — full strategy: why ontology, 6 use cases, architecture, 3-phase build plan, existing ontologies to leverage (ESCO, O*NET)
+- Created `ontology/skills-graph.yaml` — 45+ skill nodes with synonyms, implies edges (weighted), domain membership, level descriptors; covers hardware, embedded, systems, backend, frontend, AI/ML, legal tech, fintech, leadership
+- Created `ontology/roles-graph.yaml` — 14 role clusters with required/preferred skills, title synonyms, target companies, geographies, bridge bonuses for rare cross-domain combos
+- Created `ontology/domains.yaml` — domain taxonomy with cross-domain bridge weights + Raja's 4 unique bridge combos identified (hardware×AI, hardware×AI×systems, AI×legal, AI×fintech)
+- Created `tools/matcher.py` — JD text → extracts skill keywords via synonym matching → scores against profile using direct + implied scores → outputs match%, STRONG/PARTIAL/GAP table, gap actions, role cluster suggestion, "why me" bullet drafts → saves to gap-analysis/jobs/
+- Created `profile/my-profile.yaml` — machine-readable profile stub for matcher.py
+
+**Open / Next Session**:
+- [ ] BLOCKER: Fill `profile/my-profile.yaml` with actual skill levels (matcher is useless until then)
+- [ ] Test matcher on a real JD: `python tools/matcher.py --jd path/to/jd.txt`
+- [ ] Add `pyyaml` install note or requirements.txt
+
+**Key decisions**:
+- Ontology format: YAML (human-readable, Claude-readable, editable without tooling)
+- implies edges are weighted (0.0–1.0); match score uses max(direct, implied) per skill
+- Apply threshold: ≥60%; Stretch: 40–59%; Skip: <40%
+- Raja's rarest bridge: hardware + AI + systems = "from transistor to transformer" — captured in domains.yaml unique_bridges
+
+---
+
 ## Session Template (copy for each new session)
 
 ## Session N — YYYY-MM-DD

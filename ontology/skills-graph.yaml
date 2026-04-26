@@ -1,0 +1,535 @@
+# Skills Graph — Raja GHV
+# Format: skill_id → label, synonyms, domain, level descriptors, implies edges, role membership
+# implies weights: 1.0 = same skill, 0.8 = strong transfer, 0.6 = moderate, 0.4 = weak
+
+skills:
+
+  # ── HARDWARE / CHIP DESIGN ──────────────────────────────────────────────────
+
+  rtl_design:
+    label: RTL Design
+    synonyms: [Verilog, VHDL, SystemVerilog, RTL, HVL, hardware description language,
+               digital design, logic design, register transfer level]
+    domain: hardware
+    level_descriptors:
+      EXPERT: Full SoC RTL ownership, tapeout experience, complex clock/reset/interface design
+      PROFICIENT: Block-level RTL for real products, code review authority
+      FAMILIAR: RTL for coursework, FPGAs, or small blocks
+    implies:
+      digital_logic: 0.90
+      timing_analysis: 0.75
+      hardware_verification: 0.65
+      fpga_design: 0.55
+      soc_architecture: 0.50
+      synthesis: 0.70
+    required_by: [silicon_engineer, asic_designer, soc_architect, eda_engineer]
+
+  vlsi_physical_design:
+    label: VLSI Physical Design
+    synonyms: [physical design, PD, place and route, PnR, floorplanning, VLSI,
+               layout, backend design, full custom layout]
+    domain: hardware
+    level_descriptors:
+      EXPERT: Full chip PD closure, multi-voltage, advanced node (7nm/5nm)
+      PROFICIENT: Block-level PD, familiar with full flow
+      FAMILIAR: Academic or assisted PD work
+    implies:
+      timing_analysis: 0.80
+      synthesis: 0.60
+      rtl_design: 0.40
+      power_analysis: 0.75
+    required_by: [silicon_engineer, physical_design_engineer]
+
+  dft:
+    label: DFT / Design for Test
+    synonyms: [DFT, ATPG, scan insertion, BIST, boundary scan, JTAG, test compression,
+               design for testability, fault coverage]
+    domain: hardware
+    implies:
+      rtl_design: 0.50
+      hardware_verification: 0.55
+    required_by: [silicon_engineer, dft_engineer]
+
+  soc_architecture:
+    label: SoC Architecture
+    synonyms: [SoC design, system-on-chip, chip architecture, SoC integration,
+               subsystem architecture, SoC microarchitecture]
+    domain: hardware
+    implies:
+      rtl_design: 0.85
+      embedded_firmware: 0.60
+      timing_analysis: 0.70
+      interconnect_design: 0.75
+      power_analysis: 0.65
+    required_by: [soc_architect, silicon_engineer, hardware_architect]
+
+  timing_analysis:
+    label: Timing Analysis / STA
+    synonyms: [STA, static timing analysis, timing closure, setup/hold, timing signoff,
+               PrimeTime, timing paths, clock tree]
+    domain: hardware
+    implies:
+      rtl_design: 0.55
+      vlsi_physical_design: 0.60
+    required_by: [silicon_engineer, physical_design_engineer, timing_engineer]
+
+  synthesis:
+    label: Synthesis
+    synonyms: [logic synthesis, DC, Design Compiler, Genus, RTL synthesis,
+               netlist generation, technology mapping]
+    domain: hardware
+    implies:
+      rtl_design: 0.65
+      timing_analysis: 0.55
+    required_by: [silicon_engineer, asic_designer]
+
+  hardware_verification:
+    label: Hardware Verification
+    synonyms: [functional verification, UVM, SystemVerilog verification, simulation,
+               coverage-driven verification, formal verification, testbench, VIP]
+    domain: hardware
+    implies:
+      rtl_design: 0.60
+      python: 0.30
+    required_by: [silicon_engineer, verification_engineer]
+
+  fpga_design:
+    label: FPGA Design
+    synonyms: [FPGA, Xilinx, Intel FPGA, Vivado, Quartus, programmable logic,
+               FPGA prototyping, bitstream]
+    domain: hardware
+    implies:
+      rtl_design: 0.80
+      embedded_firmware: 0.40
+    required_by: [fpga_engineer, silicon_engineer]
+
+  # ── EMBEDDED / FIRMWARE ─────────────────────────────────────────────────────
+
+  embedded_firmware:
+    label: Embedded Firmware
+    synonyms: [firmware, embedded software, bare metal, embedded C, embedded C++,
+               MCU programming, microcontroller, embedded development]
+    domain: embedded
+    implies:
+      embedded_cpp: 0.90
+      rtos: 0.65
+      device_drivers: 0.75
+      communication_protocols: 0.70
+      os_internals: 0.50
+    required_by: [firmware_engineer, embedded_engineer, systems_engineer]
+
+  rtos:
+    label: RTOS
+    synonyms: [RTOS, FreeRTOS, Zephyr, VxWorks, ThreadX, real-time OS,
+               real-time operating system, task scheduling, RTOS kernel]
+    domain: embedded
+    implies:
+      embedded_firmware: 0.70
+      os_internals: 0.60
+      concurrency: 0.75
+    required_by: [firmware_engineer, embedded_engineer]
+
+  device_drivers:
+    label: Device Drivers
+    synonyms: [kernel driver, Linux driver, driver development, BSP,
+               board support package, kernel module, character device]
+    domain: embedded
+    implies:
+      os_internals: 0.80
+      embedded_firmware: 0.65
+      communication_protocols: 0.60
+      linux_kernel: 0.75
+    required_by: [firmware_engineer, systems_engineer, kernel_engineer]
+
+  communication_protocols:
+    label: Communication Protocols
+    synonyms: [SPI, I2C, UART, PCIe, USB, CAN, Ethernet, I2S, MIPI, AXI,
+               serial protocols, bus protocols, protocol stack]
+    domain: embedded
+    implies:
+      embedded_firmware: 0.65
+      networking: 0.40
+    required_by: [firmware_engineer, embedded_engineer, silicon_engineer]
+
+  soc_bringup:
+    label: SoC Bring-up
+    synonyms: [chip bring-up, silicon bring-up, board bring-up, HW bringup,
+               post-silicon validation, silicon validation, EVT/DVT]
+    domain: embedded
+    implies:
+      embedded_firmware: 0.80
+      device_drivers: 0.75
+      soc_architecture: 0.60
+      hardware_verification: 0.55
+    required_by: [silicon_engineer, firmware_engineer, embedded_engineer]
+
+  embedded_cpp:
+    label: Embedded C/C++
+    synonyms: [embedded C, embedded C++, C for embedded, constrained C++,
+               resource-constrained programming, systems C++]
+    domain: embedded
+    implies:
+      cpp: 0.85
+      embedded_firmware: 0.85
+      performance_engineering: 0.55
+    required_by: [firmware_engineer, embedded_engineer, systems_engineer]
+
+  # ── SYSTEMS / OS / INFRA ────────────────────────────────────────────────────
+
+  os_internals:
+    label: OS Internals
+    synonyms: [operating systems, OS internals, kernel internals, Linux internals,
+               process scheduling, memory management, virtual memory, system calls]
+    domain: systems
+    implies:
+      linux_kernel: 0.80
+      device_drivers: 0.70
+      performance_engineering: 0.65
+      distributed_systems: 0.50
+      concurrency: 0.75
+    required_by: [systems_engineer, kernel_engineer, platform_engineer]
+
+  linux_kernel:
+    label: Linux Kernel
+    synonyms: [Linux, kernel development, kernel programming, kernel hacking,
+               linux internals, kernel space, user space]
+    domain: systems
+    implies:
+      os_internals: 0.85
+      device_drivers: 0.80
+      performance_engineering: 0.60
+    required_by: [kernel_engineer, systems_engineer, firmware_engineer]
+
+  performance_engineering:
+    label: Performance Engineering
+    synonyms: [performance optimization, profiling, benchmarking, perf tuning,
+               latency optimization, throughput, perf analysis, flame graphs]
+    domain: systems
+    implies:
+      os_internals: 0.55
+      distributed_systems: 0.55
+      python: 0.40
+      cpp: 0.50
+    required_by: [systems_engineer, platform_engineer, ml_infra_engineer]
+
+  distributed_systems:
+    label: Distributed Systems
+    synonyms: [distributed computing, consensus, Raft, Paxos, fault tolerance,
+               scalability, microservices, service mesh, event-driven]
+    domain: systems
+    implies:
+      backend_apis: 0.70
+      cloud: 0.65
+      databases: 0.55
+      concurrency: 0.70
+    required_by: [backend_engineer, platform_engineer, staff_engineer]
+
+  cloud:
+    label: Cloud (AWS/GCP/Azure)
+    synonyms: [AWS, GCP, Azure, cloud computing, cloud infrastructure, IaaS, PaaS,
+               serverless, cloud native, EC2, GKE, AKS, EKS]
+    domain: systems
+    implies:
+      kubernetes: 0.70
+      distributed_systems: 0.60
+      backend_apis: 0.55
+    required_by: [backend_engineer, ml_infra_engineer, platform_engineer]
+
+  kubernetes:
+    label: Kubernetes / Containers
+    synonyms: [Kubernetes, K8s, Docker, containers, containerization, Helm,
+               orchestration, container registry, pod, deployment]
+    domain: systems
+    implies:
+      cloud: 0.65
+      distributed_systems: 0.55
+    required_by: [platform_engineer, ml_infra_engineer, backend_engineer]
+
+  concurrency:
+    label: Concurrency & Parallelism
+    synonyms: [multithreading, async, concurrency, parallelism, goroutines,
+               async/await, threading, race conditions, locks, atomics]
+    domain: systems
+    implies:
+      performance_engineering: 0.65
+      distributed_systems: 0.55
+    required_by: [systems_engineer, backend_engineer]
+
+  # ── SOFTWARE — BACKEND ───────────────────────────────────────────────────────
+
+  python:
+    label: Python
+    synonyms: [Python, Python3, Django, FastAPI, Flask, NumPy, pandas, scripting]
+    domain: software_backend
+    implies:
+      backend_apis: 0.65
+      data_pipelines: 0.60
+      ml_frameworks: 0.70
+      scripting: 0.85
+    required_by: [backend_engineer, ml_engineer, data_engineer, ai_engineer]
+
+  cpp:
+    label: C++
+    synonyms: [C++, C plus plus, modern C++, C++17, C++20, STL, template metaprogramming]
+    domain: software_backend
+    implies:
+      performance_engineering: 0.75
+      embedded_cpp: 0.80
+      systems_programming: 0.75
+    required_by: [systems_engineer, silicon_engineer, ml_infra_engineer, backend_engineer]
+
+  golang:
+    label: Go (Golang)
+    synonyms: [Go, Golang, goroutines, Go modules]
+    domain: software_backend
+    implies:
+      backend_apis: 0.75
+      distributed_systems: 0.65
+      concurrency: 0.70
+    required_by: [backend_engineer, platform_engineer]
+
+  rust:
+    label: Rust
+    synonyms: [Rust, rustlang, cargo, ownership model, safe systems programming]
+    domain: software_backend
+    implies:
+      systems_programming: 0.80
+      performance_engineering: 0.70
+      embedded_firmware: 0.50
+    required_by: [systems_engineer, embedded_engineer]
+
+  backend_apis:
+    label: Backend APIs
+    synonyms: [REST, RESTful, GraphQL, gRPC, API design, backend development,
+               web services, microservices, HTTP, OpenAPI]
+    domain: software_backend
+    implies:
+      python: 0.50
+      databases: 0.60
+      distributed_systems: 0.55
+    required_by: [backend_engineer, fullstack_engineer]
+
+  databases:
+    label: Databases
+    synonyms: [SQL, PostgreSQL, MySQL, NoSQL, MongoDB, Redis, database design,
+               query optimization, ORM, data modeling, DynamoDB, Cassandra]
+    domain: software_backend
+    implies:
+      data_pipelines: 0.60
+      backend_apis: 0.55
+    required_by: [backend_engineer, data_engineer]
+
+  data_pipelines:
+    label: Data Pipelines / ETL
+    synonyms: [ETL, data pipeline, Spark, Kafka, Airflow, data engineering,
+               streaming, batch processing, data warehouse, dbt]
+    domain: software_backend
+    implies:
+      databases: 0.65
+      python: 0.60
+      cloud: 0.55
+    required_by: [data_engineer, ml_engineer, backend_engineer]
+
+  # ── SOFTWARE — FRONTEND / APPS ───────────────────────────────────────────────
+
+  react_typescript:
+    label: React / TypeScript
+    synonyms: [React, TypeScript, JavaScript, Next.js, frontend, web development,
+               UI development, SPA, React Native, Node.js]
+    domain: software_frontend
+    implies:
+      fullstack: 0.65
+      ux_product: 0.45
+    required_by: [frontend_engineer, fullstack_engineer]
+
+  mobile:
+    label: Mobile Development
+    synonyms: [iOS, Android, React Native, Flutter, Swift, Kotlin, mobile app,
+               cross-platform mobile]
+    domain: software_frontend
+    implies:
+      react_typescript: 0.45
+      fullstack: 0.55
+    required_by: [mobile_engineer, fullstack_engineer]
+
+  ux_product:
+    label: UX / Product Sense
+    synonyms: [UX, user experience, product thinking, product sense, design thinking,
+               user research, wireframing, Figma, product management]
+    domain: software_frontend
+    implies:
+      mobile: 0.40
+      react_typescript: 0.35
+    required_by: [product_engineer, fullstack_engineer]
+
+  # ── AI / ML ──────────────────────────────────────────────────────────────────
+
+  llm_integration:
+    label: LLM Integration
+    synonyms: [LLM, large language model, GPT, Claude, OpenAI, Anthropic, prompt engineering,
+               AI integration, generative AI, GenAI, foundation models, API integration]
+    domain: ai_ml
+    implies:
+      agents: 0.75
+      rag: 0.65
+      python: 0.60
+      prompt_engineering: 0.90
+    required_by: [ai_engineer, ml_engineer, fullstack_ai_engineer]
+
+  agents:
+    label: Agents / Agentic AI
+    synonyms: [AI agents, agentic workflows, tool use, function calling, autonomous agents,
+               multi-agent, LangChain, LlamaIndex, agent frameworks, MCP]
+    domain: ai_ml
+    implies:
+      llm_integration: 0.85
+      rag: 0.65
+      backend_apis: 0.60
+    required_by: [ai_engineer, ml_engineer]
+
+  rag:
+    label: RAG / Vector Databases
+    synonyms: [RAG, retrieval augmented generation, vector DB, embeddings,
+               Pinecone, Weaviate, Chroma, semantic search, vector search, FAISS]
+    domain: ai_ml
+    implies:
+      llm_integration: 0.80
+      databases: 0.55
+      data_pipelines: 0.50
+    required_by: [ai_engineer, ml_engineer]
+
+  ml_frameworks:
+    label: ML Frameworks
+    synonyms: [PyTorch, TensorFlow, JAX, scikit-learn, Keras, machine learning,
+               model training, deep learning, neural networks, transformers]
+    domain: ai_ml
+    implies:
+      python: 0.80
+      mlops: 0.55
+      llm_integration: 0.50
+    required_by: [ml_engineer, research_engineer]
+
+  mlops:
+    label: MLOps
+    synonyms: [MLOps, ML platform, model serving, model deployment, ML pipelines,
+               experiment tracking, MLflow, Weights & Biases, Kubeflow]
+    domain: ai_ml
+    implies:
+      kubernetes: 0.65
+      cloud: 0.60
+      data_pipelines: 0.60
+      ml_frameworks: 0.55
+    required_by: [ml_infra_engineer, ml_engineer]
+
+  prompt_engineering:
+    label: Prompt Engineering
+    synonyms: [prompt design, prompt optimization, few-shot, chain-of-thought,
+               system prompts, prompt tuning, context engineering]
+    domain: ai_ml
+    implies:
+      llm_integration: 0.85
+    required_by: [ai_engineer, ml_engineer]
+
+  ml_hardware:
+    label: AI/ML Hardware
+    synonyms: [AI accelerator, ML hardware, NPU, AI chip, hardware for ML,
+               GPU architecture, TPU, hardware-aware ML, AI silicon]
+    domain: ai_ml   # bridges hardware + ai
+    implies:
+      rtl_design: 0.65     # reverse: knowing AI HW implies RTL knowledge
+      soc_architecture: 0.70
+      ml_frameworks: 0.55
+      performance_engineering: 0.65
+    required_by: [ai_hardware_engineer, silicon_engineer, ml_infra_engineer]
+
+  # ── LEGAL TECH / COMPLIANCE ──────────────────────────────────────────────────
+
+  legal_ai:
+    label: Legal AI / Contract Analysis
+    synonyms: [legal tech, legal AI, contract analysis, document review, NLP for legal,
+               legal NLP, contract intelligence, e-discovery, legal automation]
+    domain: legal_tech
+    implies:
+      llm_integration: 0.75
+      rag: 0.65
+      nlp: 0.70
+    required_by: [legal_tech_engineer, compliance_engineer]
+
+  compliance_automation:
+    label: Compliance Automation
+    synonyms: [compliance, regulatory tech, RegTech, KYC, AML, GDPR, data governance,
+               audit automation, policy enforcement, compliance workflow]
+    domain: legal_tech
+    implies:
+      legal_ai: 0.65
+      backend_apis: 0.55
+      data_pipelines: 0.50
+    required_by: [compliance_engineer, legal_tech_engineer, regtech_engineer]
+
+  nlp:
+    label: NLP / Text Processing
+    synonyms: [NLP, natural language processing, text analytics, named entity recognition,
+               NER, text classification, information extraction, spaCy, NLTK]
+    domain: ai_ml
+    implies:
+      ml_frameworks: 0.70
+      python: 0.75
+      llm_integration: 0.55
+    required_by: [ml_engineer, ai_engineer, legal_tech_engineer]
+
+  # ── FINTECH / FINANCE ────────────────────────────────────────────────────────
+
+  finance_ai:
+    label: AI-Assisted Finance
+    synonyms: [fintech, financial AI, quant, financial technology, trading systems,
+               financial data, algorithmic trading, financial ML]
+    domain: fintech
+    implies:
+      python: 0.70
+      data_pipelines: 0.65
+      ml_frameworks: 0.60
+      llm_integration: 0.55
+    required_by: [fintech_engineer, quant_developer]
+
+  risk_modeling:
+    label: Risk & Fraud Modeling
+    synonyms: [risk modeling, fraud detection, credit risk, market risk, risk assessment,
+               anomaly detection, fraud ML, risk quantification]
+    domain: fintech
+    implies:
+      ml_frameworks: 0.70
+      data_pipelines: 0.65
+      finance_ai: 0.75
+    required_by: [fintech_engineer, quant_developer, risk_engineer]
+
+  # ── LEADERSHIP ───────────────────────────────────────────────────────────────
+
+  technical_leadership:
+    label: Technical Leadership
+    synonyms: [tech lead, technical lead, engineering lead, staff engineer,
+               principal engineer, technical direction, roadmapping, architecture ownership]
+    domain: leadership
+    implies:
+      system_design: 0.75
+      cross_functional: 0.70
+    required_by: [staff_engineer, principal_engineer, engineering_manager]
+
+  cross_functional:
+    label: Cross-functional Collaboration
+    synonyms: [cross-functional, stakeholder management, product collaboration,
+               XFN, program management, influencing without authority]
+    domain: leadership
+    implies:
+      technical_leadership: 0.60
+    required_by: [staff_engineer, engineering_manager, principal_engineer]
+
+  system_design:
+    label: System Design
+    synonyms: [system design, high level design, HLD, architecture design,
+               distributed system design, scalable systems, design interviews]
+    domain: leadership
+    implies:
+      distributed_systems: 0.70
+      backend_apis: 0.60
+      cloud: 0.55
+    required_by: [staff_engineer, principal_engineer, architect]

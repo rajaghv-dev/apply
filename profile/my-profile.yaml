@@ -1,0 +1,227 @@
+# My Skills Profile — machine-readable for matcher.py
+# Fill in levels: EXPERT / PROFICIENT / FAMILIAR
+# Add evidence links or descriptions
+
+skills:
+  # ── HARDWARE ──
+  rtl_design:
+    level:          # EXPERT / PROFICIENT / FAMILIAR
+    last_used:      # year e.g. 2024
+    evidence:       # link or description
+
+  vlsi_physical_design:
+    level:
+    last_used:
+    evidence:
+
+  dft:
+    level:
+    last_used:
+    evidence:
+
+  soc_architecture:
+    level:
+    last_used:
+    evidence:
+
+  timing_analysis:
+    level:
+    last_used:
+    evidence:
+
+  synthesis:
+    level:
+    last_used:
+    evidence:
+
+  hardware_verification:
+    level:
+    last_used:
+    evidence:
+
+  fpga_design:
+    level:
+    last_used:
+    evidence:
+
+  # ── EMBEDDED ──
+  embedded_firmware:
+    level:
+    last_used:
+    evidence:
+
+  embedded_cpp:
+    level:
+    last_used:
+    evidence:
+
+  rtos:
+    level:
+    last_used:
+    evidence:
+
+  device_drivers:
+    level:
+    last_used:
+    evidence:
+
+  communication_protocols:
+    level:
+    last_used:
+    evidence:
+
+  soc_bringup:
+    level:
+    last_used:
+    evidence:
+
+  # ── SYSTEMS ──
+  os_internals:
+    level:
+    last_used:
+    evidence:
+
+  linux_kernel:
+    level:
+    last_used:
+    evidence:
+
+  performance_engineering:
+    level:
+    last_used:
+    evidence:
+
+  distributed_systems:
+    level:
+    last_used:
+    evidence:
+
+  cloud:
+    level:
+    last_used:
+    evidence:
+
+  kubernetes:
+    level:
+    last_used:
+    evidence:
+
+  # ── SOFTWARE ──
+  python:
+    level:
+    last_used:
+    evidence:
+
+  cpp:
+    level:
+    last_used:
+    evidence:
+
+  golang:
+    level:
+    last_used:
+    evidence:
+
+  backend_apis:
+    level:
+    last_used:
+    evidence:
+
+  databases:
+    level:
+    last_used:
+    evidence:
+
+  data_pipelines:
+    level:
+    last_used:
+    evidence:
+
+  react_typescript:
+    level:
+    last_used:
+    evidence:
+
+  mobile:
+    level:
+    last_used:
+    evidence:
+
+  # ── AI / ML ──
+  llm_integration:
+    level:
+    last_used:
+    evidence:
+
+  agents:
+    level:
+    last_used:
+    evidence:
+
+  rag:
+    level:
+    last_used:
+    evidence:
+
+  ml_frameworks:
+    level:
+    last_used:
+    evidence:
+
+  mlops:
+    level:
+    last_used:
+    evidence:
+
+  prompt_engineering:
+    level:
+    last_used:
+    evidence:
+
+  ml_hardware:
+    level:
+    last_used:
+    evidence:
+
+  nlp:
+    level:
+    last_used:
+    evidence:
+
+  # ── LEGAL TECH ──
+  legal_ai:
+    level:
+    last_used:
+    evidence:
+
+  compliance_automation:
+    level:
+    last_used:
+    evidence:
+
+  # ── FINTECH ──
+  finance_ai:
+    level:
+    last_used:
+    evidence:
+
+  risk_modeling:
+    level:
+    last_used:
+    evidence:
+
+  # ── LEADERSHIP ──
+  technical_leadership:
+    level:
+    last_used:
+    evidence:
+
+  cross_functional:
+    level:
+    last_used:
+    evidence:
+
+  system_design:
+    level:
+    last_used:
+    evidence:

@@ -1,0 +1,291 @@
+# Role Clusters Graph
+# Maps role archetypes to required skill clusters + title synonyms
+
+roles:
+
+  # ── HARDWARE / SILICON ───────────────────────────────────────────────────────
+
+  silicon_engineer:
+    label: Silicon / ASIC Engineer
+    seniority: [Senior, Staff, Principal]
+    title_synonyms:
+      - ASIC Design Engineer
+      - RTL Design Engineer
+      - Silicon Engineer
+      - Staff Silicon Engineer
+      - Principal Hardware Engineer
+    required:
+      rtl_design: EXPERT
+      timing_analysis: PROFICIENT
+      hardware_verification: PROFICIENT
+    preferred:
+      soc_architecture: PROFICIENT
+      synthesis: PROFICIENT
+      dft: FAMILIAR
+      fpga_design: FAMILIAR
+    domain_clusters: [hardware]
+    target_companies: [Qualcomm, Apple, Google, Intel, AMD, NVIDIA, ARM, Marvell, Broadcom]
+    geographies: [USA, India, UK, Germany, Switzerland]
+
+  soc_architect:
+    label: SoC Architect
+    seniority: [Staff, Principal, Distinguished]
+    title_synonyms:
+      - SoC Architect
+      - Hardware Architect
+      - Silicon Architect
+      - Principal SoC Engineer
+    required:
+      soc_architecture: EXPERT
+      rtl_design: EXPERT
+      timing_analysis: PROFICIENT
+    preferred:
+      ml_hardware: PROFICIENT
+      embedded_firmware: PROFICIENT
+      performance_engineering: PROFICIENT
+    domain_clusters: [hardware, embedded]
+    target_companies: [Qualcomm, Apple, Google, NVIDIA, ARM]
+    geographies: [USA, India, UK]
+
+  ai_hardware_engineer:
+    label: AI Hardware / ML Accelerator Engineer
+    seniority: [Senior, Staff, Principal]
+    title_synonyms:
+      - AI Hardware Engineer
+      - ML Hardware Engineer
+      - AI Accelerator Engineer
+      - Silicon ML Engineer
+      - NPU Engineer
+    required:
+      ml_hardware: PROFICIENT
+      rtl_design: PROFICIENT
+      soc_architecture: PROFICIENT
+    preferred:
+      ml_frameworks: PROFICIENT
+      performance_engineering: PROFICIENT
+      llm_integration: FAMILIAR
+    domain_clusters: [hardware, ai_ml]
+    bridge_score_bonus: 0.15   # rare cross-domain: hardware + ML
+    target_companies: [Google, Apple, NVIDIA, AMD, Qualcomm, Cerebras, Graphcore, Tesla, Amazon]
+    geographies: [USA, UK, Switzerland, India]
+
+  eda_engineer:
+    label: EDA / CAD Engineer
+    seniority: [Senior, Staff]
+    title_synonyms:
+      - EDA Engineer
+      - CAD Engineer
+      - Physical Design Automation
+      - EDA Tool Developer
+    required:
+      rtl_design: PROFICIENT
+      python: PROFICIENT
+    preferred:
+      vlsi_physical_design: PROFICIENT
+      synthesis: PROFICIENT
+      cpp: PROFICIENT
+    domain_clusters: [hardware, software_backend]
+    target_companies: [Synopsys, Cadence, Siemens EDA, Ansys]
+    geographies: [USA, India, UK, Germany, Switzerland]
+
+  # ── EMBEDDED / FIRMWARE ─────────────────────────────────────────────────────
+
+  firmware_engineer:
+    label: Firmware / Embedded Engineer
+    seniority: [Senior, Staff]
+    title_synonyms:
+      - Firmware Engineer
+      - Embedded Software Engineer
+      - Embedded Systems Engineer
+      - BSP Engineer
+    required:
+      embedded_firmware: EXPERT
+      embedded_cpp: EXPERT
+    preferred:
+      rtos: PROFICIENT
+      device_drivers: PROFICIENT
+      soc_bringup: PROFICIENT
+      communication_protocols: PROFICIENT
+    domain_clusters: [embedded, hardware]
+    target_companies: [Qualcomm, ARM, NXP, Infineon, STMicro, Bosch, Renesas]
+    geographies: [India, Germany, UK, Switzerland]
+
+  # ── AI / ML ──────────────────────────────────────────────────────────────────
+
+  ai_engineer:
+    label: AI / LLM Engineer
+    seniority: [Senior, Staff]
+    title_synonyms:
+      - AI Engineer
+      - LLM Engineer
+      - GenAI Engineer
+      - AI Application Engineer
+      - Applied AI Engineer
+    required:
+      llm_integration: EXPERT
+      python: EXPERT
+    preferred:
+      agents: PROFICIENT
+      rag: PROFICIENT
+      backend_apis: PROFICIENT
+      prompt_engineering: PROFICIENT
+    domain_clusters: [ai_ml, software_backend]
+    target_companies: [Anthropic, OpenAI, Google, Meta, Microsoft, Palantir, Mistral]
+    geographies: [UK, Switzerland, Germany, India, Remote-EU]
+
+  ml_engineer:
+    label: ML Engineer / ML Platform
+    seniority: [Senior, Staff, Principal]
+    title_synonyms:
+      - ML Engineer
+      - Machine Learning Engineer
+      - ML Platform Engineer
+      - AI Platform Engineer
+      - Research Engineer
+    required:
+      ml_frameworks: EXPERT
+      python: EXPERT
+    preferred:
+      mlops: PROFICIENT
+      llm_integration: PROFICIENT
+      distributed_systems: PROFICIENT
+      cloud: PROFICIENT
+      data_pipelines: PROFICIENT
+    domain_clusters: [ai_ml, systems, software_backend]
+    target_companies: [Google DeepMind, Meta, Microsoft Research, Amazon, NVIDIA]
+    geographies: [UK, India, Germany, Switzerland]
+
+  ml_infra_engineer:
+    label: ML Infrastructure / MLOps Engineer
+    seniority: [Senior, Staff]
+    title_synonyms:
+      - ML Infrastructure Engineer
+      - MLOps Engineer
+      - ML Platform Engineer
+      - AI Infrastructure Engineer
+    required:
+      mlops: EXPERT
+      kubernetes: PROFICIENT
+      python: EXPERT
+    preferred:
+      distributed_systems: PROFICIENT
+      cloud: PROFICIENT
+      data_pipelines: PROFICIENT
+      ml_frameworks: PROFICIENT
+    domain_clusters: [ai_ml, systems]
+    target_companies: [Google, Meta, Microsoft, Amazon, Databricks]
+    geographies: [UK, India, Germany]
+
+  # ── SYSTEMS / BACKEND ────────────────────────────────────────────────────────
+
+  systems_engineer:
+    label: Systems / Platform Engineer
+    seniority: [Senior, Staff, Principal]
+    title_synonyms:
+      - Systems Engineer
+      - Platform Engineer
+      - Infrastructure Engineer
+      - Senior Systems Software Engineer
+    required:
+      os_internals: PROFICIENT
+      distributed_systems: PROFICIENT
+      python: PROFICIENT
+    preferred:
+      linux_kernel: PROFICIENT
+      cpp: PROFICIENT
+      kubernetes: PROFICIENT
+      performance_engineering: PROFICIENT
+    domain_clusters: [systems, software_backend]
+    target_companies: [Google, Meta, Microsoft, Amazon, Cloudflare]
+    geographies: [UK, India, Germany, Switzerland]
+
+  backend_engineer:
+    label: Backend Engineer
+    seniority: [Senior, Staff]
+    title_synonyms:
+      - Backend Engineer
+      - Software Engineer
+      - Server-side Engineer
+      - API Engineer
+    required:
+      backend_apis: EXPERT
+      databases: PROFICIENT
+      python: PROFICIENT
+    preferred:
+      distributed_systems: PROFICIENT
+      cloud: PROFICIENT
+      golang: PROFICIENT
+    domain_clusters: [software_backend]
+    target_companies: [any tech company]
+    geographies: [UK, India, Germany, Switzerland]
+
+  # ── LEGAL TECH ──────────────────────────────────────────────────────────────
+
+  legal_tech_engineer:
+    label: Legal Tech / RegTech Engineer
+    seniority: [Senior, Staff]
+    title_synonyms:
+      - Legal Technology Engineer
+      - RegTech Engineer
+      - Compliance Engineer
+      - Legal AI Engineer
+    required:
+      legal_ai: PROFICIENT
+      python: EXPERT
+      llm_integration: PROFICIENT
+    preferred:
+      rag: PROFICIENT
+      compliance_automation: PROFICIENT
+      backend_apis: PROFICIENT
+      nlp: PROFICIENT
+    domain_clusters: [legal_tech, ai_ml]
+    bridge_score_bonus: 0.20   # rare: legal domain + AI engineering
+    target_companies: [Relativity, Luminance, Eigen Technologies, ComplyAdvantage, Juro]
+    geographies: [UK, EU, India-remote]
+
+  # ── FINTECH ──────────────────────────────────────────────────────────────────
+
+  fintech_engineer:
+    label: FinTech / Finance AI Engineer
+    seniority: [Senior, Staff]
+    title_synonyms:
+      - FinTech Engineer
+      - Quantitative Developer
+      - Risk Platform Engineer
+      - Finance AI Engineer
+    required:
+      python: EXPERT
+      finance_ai: PROFICIENT
+    preferred:
+      risk_modeling: PROFICIENT
+      data_pipelines: PROFICIENT
+      ml_frameworks: PROFICIENT
+      databases: PROFICIENT
+    domain_clusters: [fintech, ai_ml]
+    bridge_score_bonus: 0.15
+    target_companies: [Bloomberg, Goldman Sachs, JPMorgan, Revolut, Stripe, Wise, UBS, Avaloq]
+    geographies: [UK, Switzerland, India]
+
+  # ── STAFF / PRINCIPAL (GENERALIST) ──────────────────────────────────────────
+
+  staff_engineer:
+    label: Staff / Principal Engineer (Generalist)
+    seniority: [Staff, Principal, Distinguished]
+    title_synonyms:
+      - Staff Engineer
+      - Principal Engineer
+      - Distinguished Engineer
+      - Tech Lead
+      - Engineering Architect
+    required:
+      system_design: EXPERT
+      technical_leadership: EXPERT
+    preferred:
+      distributed_systems: PROFICIENT
+      cross_functional: PROFICIENT
+      python: PROFICIENT
+    domain_clusters: [any]
+    note: "Raja's generalist profile (chip-to-app) is a strong fit for Staff roles at
+           companies that value breadth — especially at the intersection of hardware and AI."
+    target_companies: [Google, Meta, Apple, Microsoft, any scale-up]
+    geographies: [UK, Switzerland, India, Germany]

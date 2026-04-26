@@ -1,0 +1,116 @@
+# Domain Taxonomy + Cross-Domain Bridge Weights
+# bridge_weight: if you're strong in domain A, how much does that transfer to domain B?
+
+domains:
+
+  hardware:
+    label: Hardware / Chip Design
+    skills: [rtl_design, vlsi_physical_design, dft, soc_architecture,
+             timing_analysis, synthesis, hardware_verification, fpga_design]
+    bridges_to:
+      embedded: 0.70      # SoC architects often know firmware
+      systems: 0.45       # hardware people understand OS primitives
+      ai_ml: 0.40         # via AI hardware path
+      software_backend: 0.30
+    bridge_note: "Hardware → AI is the rarest and highest-value bridge in the market right now"
+
+  embedded:
+    label: Embedded / Firmware
+    skills: [embedded_firmware, rtos, device_drivers, communication_protocols,
+             soc_bringup, embedded_cpp]
+    bridges_to:
+      hardware: 0.65
+      systems: 0.70       # embedded people often become OS/systems engineers
+      software_backend: 0.50
+      ai_ml: 0.30
+
+  systems:
+    label: Systems / OS / Infrastructure
+    skills: [os_internals, linux_kernel, performance_engineering, distributed_systems,
+             cloud, kubernetes, concurrency]
+    bridges_to:
+      embedded: 0.60
+      software_backend: 0.75
+      ai_ml: 0.55         # systems engineering is core to ML infra
+      hardware: 0.35
+
+  software_backend:
+    label: Software / Backend / Data
+    skills: [python, cpp, golang, rust, backend_apis, databases, data_pipelines]
+    bridges_to:
+      systems: 0.60
+      ai_ml: 0.65
+      software_frontend: 0.50
+      fintech: 0.55
+      legal_tech: 0.55
+
+  software_frontend:
+    label: Frontend / Apps
+    skills: [react_typescript, mobile, ux_product]
+    bridges_to:
+      software_backend: 0.50
+      ux_product: 0.80
+
+  ai_ml:
+    label: AI / ML / LLM
+    skills: [llm_integration, agents, rag, ml_frameworks, mlops,
+             prompt_engineering, nlp, ml_hardware]
+    bridges_to:
+      software_backend: 0.65
+      systems: 0.55
+      legal_tech: 0.70    # LLM → legal AI is a natural path
+      fintech: 0.65       # LLM → finance AI
+      hardware: 0.45      # via AI hardware
+
+  legal_tech:
+    label: Legal Tech / Compliance
+    skills: [legal_ai, compliance_automation, nlp]
+    bridges_to:
+      ai_ml: 0.70
+      software_backend: 0.55
+      fintech: 0.50       # regulatory overlap
+
+  fintech:
+    label: FinTech / Finance AI
+    skills: [finance_ai, risk_modeling]
+    bridges_to:
+      ai_ml: 0.65
+      software_backend: 0.60
+      legal_tech: 0.45    # regulatory overlap
+
+  leadership:
+    label: Leadership / Cross-functional
+    skills: [technical_leadership, cross_functional, system_design]
+    bridges_to:
+      any: 0.30           # leadership skills transfer across all domains
+
+# ── RAJA'S UNIQUE CROSS-DOMAIN BRIDGES ──────────────────────────────────────
+# These are the rare combinations that create high-value differentiation.
+# Most engineers sit in 1-2 adjacent domains. Raja spans 5+.
+
+unique_bridges:
+  hardware_x_ai:
+    domains: [hardware, ai_ml]
+    rarity: VERY_RARE     # <0.5% of engineers have this combination
+    roles_unlocked: [ai_hardware_engineer, ml_hardware, ai_chip_architect]
+    market_trend: GROWING  # AI silicon is the hottest area in semiconductors
+    pitch: "Can bridge AI model requirements to hardware architecture decisions — speaks
+            RTL and LLM in the same sentence"
+
+  hardware_x_ai_x_systems:
+    domains: [hardware, ai_ml, systems]
+    rarity: EXTREMELY_RARE
+    roles_unlocked: [ai_hardware_engineer, ml_infra_engineer, principal_platform_engineer]
+    pitch: "End-to-end: from the transistor to the transformer"
+
+  ai_x_legal:
+    domains: [ai_ml, legal_tech]
+    rarity: RARE
+    roles_unlocked: [legal_tech_engineer, compliance_engineer, regtech_engineer]
+    pitch: "LLM engineering with genuine legal/compliance domain understanding"
+
+  ai_x_fintech:
+    domains: [ai_ml, fintech]
+    rarity: RARE
+    roles_unlocked: [fintech_engineer, quant_developer, finance_ai_engineer]
+    pitch: "AI/ML engineering with financial domain awareness — not just a tool user"
