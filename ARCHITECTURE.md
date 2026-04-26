@@ -1,7 +1,7 @@
 # System Architecture
 
-**apply** — Personal Job Search Intelligence System  
-Author: Raja GHV (`rajaghv-dev`) | Last updated: 2026-04-26
+**apply** — Career Intelligence & Second Brain System  
+Last updated: 2026-04-26
 
 ---
 

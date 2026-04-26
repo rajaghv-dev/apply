@@ -1,4 +1,4 @@
-# Context — Raja GHV | Job Search Command Center
+# Context — apply | Career Intelligence System
 
 ## Who I Am
 - **GitHub**: rajaghv-dev | **Email**: rajaghv.dev@gmail.com
@@ -18,6 +18,10 @@
 | AI/ML | LLM integration, agents, RAG | |
 | Legal Tech | AI-assisted compliance, contract analysis | |
 | FinTech | AI-assisted finance, risk, automation | |
+| AI Hardware | ML accelerators, NPU, AI silicon | |
+| Video Analytics | CCTV, CV pipelines, edge deployment | |
+| Industrial AI | Smart manufacturing, inspection, Industry 4.0 | |
+| Embedded AI | TinyML, on-device inference, MCU deployment | |
 
 ## Job Search Goals
 - Target: senior IC or staff/principal roles; open to tech lead / architect tracks

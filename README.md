@@ -1,8 +1,8 @@
-# apply — Raja GHV's Job Search Command Center
+# apply
 
 > Technologist & generalist: chip design → embedded → systems → backend → frontend → AI/ML  
-> Vertical domains: AI-assisted Legal/Compliance, AI-assisted Finance  
-> GitHub: [rajaghv-dev](https://github.com/rajaghv-dev)
+> Vertical domains: Legal/Compliance AI · Finance AI · Silicon/EDA · Video Analytics · Industrial AI  
+> Second brain · evidence engine · job search intelligence
 
 ---
 
