@@ -530,27 +530,32 @@ InMails, post impressions. After 8 weeks you have a correlation signal.
 
 ## 7. Component Status
 
+_Last updated: Session 9 (2026-04-29)_
+
 | Component | Status | Location | Completeness |
 |-----------|--------|----------|-------------|
-| Ontology — Skills Graph | Built | ontology/skills-graph.yaml | ~70% (add more AI/legal/fintech skills) |
+| Ontology — Skills Graph | Built | ontology/skills-graph.yaml | ~70% |
 | Ontology — Roles Graph | Built | ontology/roles-graph.yaml | ~80% |
 | Ontology — Domains | Built | ontology/domains.yaml | ~90% |
-| Matching Engine | Built | tools/matcher.py | ~60% (no decay, no required/preferred split) |
-| Profile (machine) | Stub | profile/my-profile.yaml | 0% — needs user data |
+| Matching Engine | Built | tools/matcher.py | 100% — decay + section detection added |
+| Learning Path Finder | Built | tools/pathfinder.py | 100% — NetworkX multi-hop BFS/Dijkstra |
+| Claude API Narrator | Built | tools/narrator.py | 100% — gap narrative + why-me + recruiter msg |
+| Job Scraper | Built | tools/job-scraper.py | 100% — Adzuna/Reed/Remotive/Playwright |
+| GitHub Actions CI | Built | .github/workflows/weekly-scraper.yml | 100% — Monday cron |
+| Profile (machine) | Stub | profile/my-profile.yaml | 0% — needs user data ← P0 BLOCKER |
 | Profile (human) | Stub | profile/skills.md | 0% — needs user data |
 | JD Store | Empty | gap-analysis/jobs/ | 0% — no real JDs analyzed yet |
-| Job Scraper | Designed | job-sources/scraping.md | 0% — not built |
 | LinkedIn Layer | Stub | profile/linkedin.md | 0% — needs user data |
 | Market Scan | Stub | profile/market-scan.md | 0% — no JDs scanned |
 | Evidence Map | Stub | evidence/projects.md | 5% — one entry (this repo) |
 | Network Contacts | Stub | network/contacts.md | 0% — needs user data |
 | Interview Prep | Stub | interview/prep.md | 0% — needs STAR stories |
 | Resume Clusters | Planned | resume/ | 0% — no CVs yet |
-| Learning Roadmap | Stub | learning/roadmap.md | 0% — no gaps identified yet |
+| Learning Roadmap | Stub | learning/roadmap.md | 0% — feeds from gap analysis |
 | Job Tracker | Stub | job-tracker/applications.md | 0% — no applications yet |
 
 **Critical path to first application**:
-`my-profile.yaml` → `matcher.py` on a real JD → gap-analysis/jobs/[role].md → apply
+`my-profile.yaml` → `matcher.py --jd <file>` → `pathfinder.py --role <id>` → `narrator.py` → apply
 
 ---
 
@@ -571,6 +576,7 @@ ontology/skills-graph.yaml
 
 ontology/roles-graph.yaml
   ├── feeds → tools/matcher.py (role cluster suggestion)
+  ├── feeds → tools/pathfinder.py (role gap skills)
   └── cross-refs → ontology/domains.yaml (domain_clusters)
 
 tools/matcher.py
@@ -578,6 +584,18 @@ tools/matcher.py
   ├── reads → ontology/skills-graph.yaml
   ├── reads → ontology/roles-graph.yaml
   └── writes → gap-analysis/jobs/match-{N}pct-latest.md
+
+tools/pathfinder.py
+  ├── reads → ontology/skills-graph.yaml (implies graph → NetworkX DiGraph)
+  ├── reads → ontology/roles-graph.yaml (role required skills)
+  ├── reads → profile/my-profile.yaml (current skills = graph sources)
+  └── outputs → ordered learning plan (terminal)
+
+tools/narrator.py
+  ├── reads → gap-analysis/jobs/match-*pct-latest.md
+  ├── reads → profile/my-profile.yaml (profile summary)
+  ├── calls → Anthropic API (claude-haiku, prompt-cached system prompt)
+  └── writes → gap-analysis/jobs/narration-{N}pct-{date}.md
 
 gap-analysis/jobs/*.md
   ├── drives → learning/roadmap.md (gap actions)
@@ -603,18 +621,17 @@ evidence/projects.md
 - [x] Job source catalog
 - [ ] Profile data (BLOCKER)
 
-### Phase 2 — Automation
-- [ ] Job scraper (Adzuna + Indeed APIs + Playwright)
-- [ ] Weekly cron + digest file
-- [ ] LLM JD parsing (required vs. preferred split)
-- [ ] Skill decay in scoring
-- [ ] LinkedIn analytics log
+### Phase 2 — Automation ✓ COMPLETE
+- [x] Job scraper (Adzuna + Reed + Remotive + Playwright) — tools/job-scraper.py
+- [x] Weekly cron + digest file — .github/workflows/weekly-scraper.yml
+- [x] JD section detection (required 2× / preferred 1×) — matcher.py
+- [x] Skill decay in scoring (tiered by last_used) — matcher.py
+- [ ] LinkedIn analytics log — P3-4, add when profile is filled
 
-### Phase 3 — Intelligence
-- [ ] NetworkX graph → multi-hop inference, shortest learning path
-- [ ] Role cluster auto-detection from JD (not just synonym match)
-- [ ] Claude API in pipeline (gap narrative + why-me bullets, automated)
-- [ ] Resume auto-generation per role cluster from profile YAML
+### Phase 3 — Intelligence ✓ COMPLETE (core items)
+- [x] NetworkX graph → multi-hop Dijkstra, shortest learning path — tools/pathfinder.py
+- [x] Claude API in pipeline (gap narrative + why-me + recruiter msg) — tools/narrator.py
+- [ ] Resume auto-generation per role cluster — gated on my-profile.yaml being filled
 
 ### Phase 4 — Scale
 - [ ] ESCO ontology integration (map Raja's skills to EU standard)

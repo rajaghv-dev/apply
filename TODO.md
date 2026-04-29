@@ -146,17 +146,13 @@ Nothing below produces real value until both of these are done.
 
 ---
 
-## P3 — PHASE 2 ARCHITECTURE (next sprint, after answering open questions)
+## P3 — REMAINING (gated on profile data or open question answers)
 
-- [ ] **P3-1 | NetworkX multi-hop inference** — shortest learning path to any role (`ARCHITECTURE.md` Q4)
 - [ ] **P3-2 | Domain focus bonus in matcher** — focus_bonus multipliers per role cluster (`ARCHITECTURE.md` Q3)
-- [ ] **P3-3 | Claude API in scraper pipeline** — regex screens, Claude narrates ≥60% roles (`ARCHITECTURE.md` Q5)
 - [ ] **P3-4 | LinkedIn analytics log** — weekly SSI + views + InMails tracker in `linkedin/analytics-log.md`
 - [ ] **P3-5 | Resume cluster generation** — 5 cluster CVs from my-profile.yaml + ontology
 - [ ] **P3-6 | ESCO ontology mapping** — map skill nodes to EU standard IDs
 - [ ] **P3-7 | Market scan** — 20 JDs per cluster → keyword frequency table in `profile/market-scan.md`
-- [ ] **P3-8 | requirements.txt** — pyyaml, playwright, requests, adzuna-client for tools/
-- [ ] **P3-9 | GitHub Actions** — weekly scraper → auto-commit to job-tracker/new-this-week.md
 
 ---
 
@@ -182,8 +178,13 @@ Nothing below produces real value until both of these are done.
 - [x] Ontology: `skills-graph.yaml` (45+ skill nodes, synonyms, weighted implies edges)
 - [x] Ontology: `roles-graph.yaml` (14 role clusters, title synonyms, bridge bonuses)
 - [x] Ontology: `domains.yaml` (10 domains, cross-domain bridge weights, 4 unique bridges)
-- [x] Matcher: `tools/matcher.py` (JD text → match% + STRONG/PARTIAL/GAP + gap actions + role clusters)
-- [x] Architecture: `ARCHITECTURE.md` (11 sections, 6 open design questions, 8 review questions)
+- [x] Matcher: `tools/matcher.py` — skill decay (tiered last_used) + JD section detection (required 2× / preferred 1×)
+- [x] Pathfinder: `tools/pathfinder.py` — NetworkX Dijkstra multi-hop: shortest learning path from profile to any role
+- [x] Narrator: `tools/narrator.py` — Claude API (Haiku, prompt-cached) → gap narrative + why-me + recruiter message
+- [x] Scraper: `tools/job-scraper.py` — Adzuna/Reed/Remotive/Playwright → new-this-week.md + seen.txt dedup
+- [x] `requirements.txt` — pyyaml, requests, playwright, networkx, anthropic
+- [x] `.github/workflows/weekly-scraper.yml` — Monday 08:00 UTC cron + manual trigger
+- [x] Architecture: `ARCHITECTURE.md` (Phase 2+3 complete, component status updated)
 - [x] Gap audit: `gaps-and-improvements.md` (10 gaps, 5 improvements, priority table)
 
 ### Job sources

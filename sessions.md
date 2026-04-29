@@ -204,6 +204,32 @@
 
 ---
 
+## Session 9 — 2026-04-29
+
+**Goal**: Complete remaining P3 code items — NetworkX pathfinder and Claude API narrator.
+
+**Done**:
+- `tools/pathfinder.py` — new; loads skills-graph.yaml → builds NetworkX DiGraph with implies edges (cost = 1 − weight); runs Dijkstra from current skills to each gap skill; outputs ordered learning plan (build-on-existing first, from-scratch last); supports `--role <id>`, `--skill <ids>`, `--list-roles`
+- `tools/narrator.py` — new; reads latest match file from gap-analysis/jobs/; calls Claude Haiku (claude-haiku-4-5-20251001) with prompt-cached system prompt; generates gap narrative + why-me bullets + recruiter message; saves to gap-analysis/jobs/narration-{N}pct-{date}.md; prints token usage + cost estimate; requires ANTHROPIC_API_KEY env var
+- `requirements.txt` — added networkx>=3.0 and anthropic>=0.40.0
+- `ARCHITECTURE.md` — updated: component status table (all tools now Built/100%), file dependency map (pathfinder + narrator added), Phase 2+3 marked complete
+- `TODO.md` — P3-1, P3-3, P3-8, P3-9 moved to Done; P3 section trimmed to remaining 5 items
+
+**Open / Next Session**:
+- [ ] **P0-1**: Fill `profile/my-profile.yaml` — without this, matcher/pathfinder/narrator all run with empty profile
+- [ ] **P0-2**: Answer `profile/questionnaire.md` Sections A+C
+- [ ] Test the full pipeline on a real JD: `matcher.py --jd <file>` → `pathfinder.py --role <id>` → `narrator.py`
+- [ ] Set GitHub repo secrets: ADZUNA_APP_ID, ADZUNA_APP_KEY, REED_API_KEY, ANTHROPIC_API_KEY
+- [ ] Answer open questions Q1–Q12 (20 min) — unblocks remaining P3 items
+
+**Key decisions**:
+- All Phase 2 and core Phase 3 code is complete — the system is fully instrumented
+- The only remaining code-level gaps are gated on profile data (resume generation) or open question answers (domain focus bonus)
+- pathfinder.py uses Dijkstra over implies graph; cost = 1 − weight so high-transfer edges are cheap hops
+- narrator.py uses prompt caching on the system prompt (cache_control: ephemeral) → ~$0.001/call at Haiku pricing
+
+---
+
 ## Session Template (copy for each new session)
 
 ## Session N — YYYY-MM-DD
