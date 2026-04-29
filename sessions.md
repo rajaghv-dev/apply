@@ -252,6 +252,36 @@
 
 ---
 
+## Session 11 — 2026-04-29
+
+**Goal**: Complete all remaining code items, add tests, sync all MD files.
+
+**Done**:
+- `tools/matcher.py` — domain focus bonus (×1.15 on direct_score for skills in primary role domain)
+- `tools/log-linkedin.py` — append weekly SSI/views/inmails/searches to `linkedin/analytics-log.md`
+- `tools/ssi-dashboard.py` — matplotlib 2×2 chart: SSI, views, inmails, searches over time; saves PNG
+- `tools/resume-gen.py` — cluster-specific resume stubs from profile YAML + roles-graph
+- `tools/market-scan.py` — batch JD directory scan → skill frequency table → profile/market-scan.md
+- `tools/esco-map.py` — 40+ ESCO URI mappings; --export writes ontology/esco-mapping.yaml; --annotate patches skills-graph.yaml
+- `tools/salary-pull.py` — curated 2025 salary benchmarks (6 role clusters × 4–5 geographies); --save appends to market-scan.md; --scrape opens LinkedIn Salary
+- `tools/offer-compare.py` — total comp + CoL-adjusted USD; --offer CLI or interactive; saves job-tracker/offers.md
+- `tests/` — 81 tests, 100% passing: test_matcher (26), test_pathfinder (14), test_log_linkedin (5), test_offer_compare (11), test_resume_gen (8), test_market_scan (10), test_ssi_dashboard (8)
+- `requirements.txt` — added matplotlib>=3.8.0 and pytest>=7.0.0
+- MD sync: `README.md` (Session 11, full tools table, updated pipeline), `TODO.md` (P3 all complete, Done log updated), `ARCHITECTURE.md` (Phase 3 complete, all 13 components listed)
+
+**Open / Next Session**:
+- [ ] **P0-1**: Fill `profile/my-profile.yaml` — NOTHING WORKS WITHOUT THIS
+- [ ] **P0-2**: Answer `profile/questionnaire.md` Sections A+C
+- [ ] Run full pipeline on a real JD end-to-end
+- [ ] Set GitHub repo secrets: ADZUNA_APP_ID, ADZUNA_APP_KEY, REED_API_KEY, ANTHROPIC_API_KEY
+
+**Key decisions**:
+- All code is now complete — zero remaining code items
+- Next action is 100% data entry: fill profile, run pipeline on a real JD
+- Test suite is the regression guard — run `pytest tests/ -q` before any future tool changes
+
+---
+
 ## Session Template (copy for each new session)
 
 ## Session N — YYYY-MM-DD

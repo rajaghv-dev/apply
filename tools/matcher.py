@@ -30,6 +30,7 @@ PROFILE      = REPO_ROOT / "profile" / "my-profile.yaml"
 
 CURRENT_YEAR = date.today().year
 LEVEL_SCORE  = {"EXPERT": 3, "PROFICIENT": 2, "FAMILIAR": 1, "": 0, None: 0}
+FOCUS_BONUS  = 1.15   # multiplier on direct_score when skill domain matches top role cluster
 
 REQUIRED_PATTERNS = [
     r'required[:\s]', r'must have[:\s]', r'you must', r'essential[:\s]',
@@ -46,6 +47,14 @@ PREFERRED_PATTERNS = [
 def load_yaml(path):
     with open(path) as f:
         return yaml.safe_load(f)
+
+
+def get_focus_domains(role_clusters: list[str], roles_graph: dict) -> set[str]:
+    """Return the primary domain_clusters of the top detected role cluster."""
+    if not role_clusters:
+        return set()
+    top = roles_graph.get("roles", {}).get(role_clusters[0], {})
+    return set(top.get("domain_clusters", []))
 
 
 def apply_decay(level_score: int, last_used: int | None) -> tuple[float, str | None]:
@@ -118,10 +127,12 @@ def score_profile_against_jd(
     jd_skills: dict[str, float],
     profile_skills: dict,
     skills_graph: dict,
+    focus_domains: set[str] | None = None,
 ) -> dict:
     """
     Score each JD skill against profile.
-    direct_score uses decay; implied_score propagates decayed scores through implies edges.
+    direct_score uses decay + optional domain focus bonus.
+    implied_score propagates decayed scores through implies edges.
     """
     results = {}
     all_skills = skills_graph["skills"]
@@ -130,11 +141,19 @@ def score_profile_against_jd(
         if jd_skill_id not in all_skills:
             continue
 
-        my_data  = profile_skills.get(jd_skill_id, {})
-        my_level = my_data.get("level", "")
+        my_data   = profile_skills.get(jd_skill_id, {})
+        my_level  = my_data.get("level", "")
         last_used = my_data.get("last_used")
         raw_direct = LEVEL_SCORE.get(my_level, 0)
         direct, decay_note = apply_decay(raw_direct, last_used)
+
+        # Domain focus bonus: reward depth in the role's primary domain
+        focus_applied = False
+        if focus_domains and direct > 0:
+            skill_domain = all_skills[jd_skill_id].get("domain", "")
+            if skill_domain in focus_domains:
+                direct      *= FOCUS_BONUS
+                focus_applied = True
 
         implied = 0.0
         for my_skill_id, my_sd in profile_skills.items():
@@ -166,15 +185,16 @@ def score_profile_against_jd(
             status = "GAP"
 
         results[jd_skill_id] = {
-            "label":        all_skills[jd_skill_id]["label"],
-            "direct_score": round(direct, 2),
+            "label":         all_skills[jd_skill_id]["label"],
+            "direct_score":  round(direct, 2),
             "implied_score": round(implied, 2),
-            "final_score":  round(final, 2),
-            "max_possible": 3.0,
-            "status":       status,
-            "my_level":     my_level or "none",
-            "decay_note":   decay_note,
-            "jd_weight":    jd_weight,
+            "final_score":   round(final, 2),
+            "max_possible":  3.0,
+            "status":        status,
+            "my_level":      my_level or "none",
+            "decay_note":    decay_note,
+            "jd_weight":     jd_weight,
+            "focus_bonus":   focus_applied,
         }
 
     return results
@@ -215,10 +235,13 @@ def print_report(scored: dict, match_pct: float, role_clusters: list,
     else:
         print("→ SKIP or major gap-close needed")
 
-    n_req  = sum(1 for v in scored.values() if v["jd_weight"] >= 2.0)
-    n_pref = sum(1 for v in scored.values() if v["jd_weight"] < 2.0)
+    n_req   = sum(1 for v in scored.values() if v["jd_weight"] >= 2.0)
+    n_pref  = sum(1 for v in scored.values() if v["jd_weight"] < 2.0)
+    n_bonus = sum(1 for v in scored.values() if v.get("focus_bonus"))
     if n_req or n_pref:
         print(f"  Sections detected: {n_req} required (2×), {n_pref} preferred (1×)")
+    if n_bonus:
+        print(f"  Domain focus bonus (×{FOCUS_BONUS}): applied to {n_bonus} skill(s) in primary domain")
 
     strong  = [v for v in scored.values() if v["status"] == "STRONG"]
     partial = [v for v in scored.values() if v["status"] == "PARTIAL"]
@@ -307,9 +330,10 @@ def main():
         profile_skills = profile_data.get("skills", {})
 
     jd_skills     = extract_skills_from_jd(jd_text, skills_graph)
-    scored        = score_profile_against_jd(jd_skills, profile_skills, skills_graph)
+    role_clusters = suggest_role_clusters(jd_skills, roles_graph)   # before scoring for focus bonus
+    focus_domains = get_focus_domains(role_clusters, roles_graph)
+    scored        = score_profile_against_jd(jd_skills, profile_skills, skills_graph, focus_domains)
     match_pct     = compute_match_percent(scored)
-    role_clusters = suggest_role_clusters(jd_skills, roles_graph)
 
     print_report(scored, match_pct, role_clusters, roles_graph, skills_graph)
 

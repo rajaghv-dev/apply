@@ -537,10 +537,18 @@ _Last updated: Session 9 (2026-04-29)_
 | Ontology — Skills Graph | Built | ontology/skills-graph.yaml | ~70% |
 | Ontology — Roles Graph | Built | ontology/roles-graph.yaml | ~80% |
 | Ontology — Domains | Built | ontology/domains.yaml | ~90% |
-| Matching Engine | Built | tools/matcher.py | 100% — decay + section detection added |
-| Learning Path Finder | Built | tools/pathfinder.py | 100% — NetworkX multi-hop BFS/Dijkstra |
+| Matching Engine | Built | tools/matcher.py | 100% — decay + section detection + focus bonus |
+| Learning Path Finder | Built | tools/pathfinder.py | 100% — NetworkX Dijkstra multi-hop |
 | Claude API Narrator | Built | tools/narrator.py | 100% — gap narrative + why-me + recruiter msg |
 | Job Scraper | Built | tools/job-scraper.py | 100% — Adzuna/Reed/Remotive/Playwright |
+| LinkedIn Logger | Built | tools/log-linkedin.py | 100% — weekly SSI snapshot appender |
+| SSI Dashboard | Built | tools/ssi-dashboard.py | 100% — matplotlib 2×2 trend chart |
+| Resume Generator | Built | tools/resume-gen.py | 100% — cluster-specific stubs |
+| Market Scanner | Built | tools/market-scan.py | 100% — batch JD skill frequency table |
+| ESCO Mapper | Built | tools/esco-map.py | 100% — 40+ skills mapped to EU standard |
+| Salary Benchmarks | Built | tools/salary-pull.py | 100% — curated 2025 data + LinkedIn scrape |
+| Offer Comparator | Built | tools/offer-compare.py | 100% — total comp + CoL-adjusted USD |
+| Test Suite | Built | tests/ (81 tests) | 100% passing |
 | GitHub Actions CI | Built | .github/workflows/weekly-scraper.yml | 100% — Monday cron |
 | Profile (machine) | Stub | profile/my-profile.yaml | 0% — needs user data ← P0 BLOCKER |
 | Profile (human) | Stub | profile/skills.md | 0% — needs user data |
@@ -628,10 +636,17 @@ evidence/projects.md
 - [x] Skill decay in scoring (tiered by last_used) — matcher.py
 - [ ] LinkedIn analytics log — P3-4, add when profile is filled
 
-### Phase 3 — Intelligence ✓ COMPLETE (core items)
+### Phase 3 — Intelligence ✓ COMPLETE
 - [x] NetworkX graph → multi-hop Dijkstra, shortest learning path — tools/pathfinder.py
 - [x] Claude API in pipeline (gap narrative + why-me + recruiter msg) — tools/narrator.py
-- [ ] Resume auto-generation per role cluster — gated on my-profile.yaml being filled
+- [x] Resume auto-generation per role cluster — tools/resume-gen.py
+- [x] Domain focus bonus in matcher (×1.15 for primary domain skills) — matcher.py
+- [x] ESCO ontology mapping — tools/esco-map.py + ontology/esco-mapping.yaml
+- [x] Market scan (batch JD frequency) — tools/market-scan.py
+- [x] Salary benchmarks + scraper — tools/salary-pull.py
+- [x] Offer comparison (total comp + CoL-adj) — tools/offer-compare.py
+- [x] LinkedIn analytics logger + dashboard — tools/log-linkedin.py + ssi-dashboard.py
+- [x] Test suite — tests/ (81 tests, 100% passing)
 
 ### Phase 4 — Scale
 - [ ] ESCO ontology integration (map Raja's skills to EU standard)

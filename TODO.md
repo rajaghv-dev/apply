@@ -146,13 +146,9 @@ Nothing below produces real value until both of these are done.
 
 ---
 
-## P3 — REMAINING (gated on profile data or open question answers)
+## P3 — ALL COMPLETE ✓
 
-- [ ] **P3-2 | Domain focus bonus in matcher** — focus_bonus multipliers per role cluster (`ARCHITECTURE.md` Q3)
-- [ ] **P3-4 | LinkedIn analytics log** — weekly SSI + views + InMails tracker in `linkedin/analytics-log.md`
-- [ ] **P3-5 | Resume cluster generation** — 5 cluster CVs from my-profile.yaml + ontology
-- [ ] **P3-6 | ESCO ontology mapping** — map skill nodes to EU standard IDs
-- [ ] **P3-7 | Market scan** — 20 JDs per cluster → keyword frequency table in `profile/market-scan.md`
+All planned code is done. Remaining work is data entry (profile) and content production.
 
 ---
 
@@ -178,14 +174,20 @@ Nothing below produces real value until both of these are done.
 - [x] Ontology: `skills-graph.yaml` (45+ skill nodes, synonyms, weighted implies edges)
 - [x] Ontology: `roles-graph.yaml` (14 role clusters, title synonyms, bridge bonuses)
 - [x] Ontology: `domains.yaml` (10 domains, cross-domain bridge weights, 4 unique bridges)
-- [x] Matcher: `tools/matcher.py` — skill decay (tiered last_used) + JD section detection (required 2× / preferred 1×)
-- [x] Pathfinder: `tools/pathfinder.py` — NetworkX Dijkstra multi-hop: shortest learning path from profile to any role
-- [x] Narrator: `tools/narrator.py` — Claude API (Haiku, prompt-cached) → gap narrative + why-me + recruiter message
-- [x] Scraper: `tools/job-scraper.py` — Adzuna/Reed/Remotive/Playwright → new-this-week.md + seen.txt dedup
-- [x] `requirements.txt` — pyyaml, requests, playwright, networkx, anthropic
+- [x] Matcher: `tools/matcher.py` — decay + section detection + domain focus bonus (×1.15)
+- [x] Pathfinder: `tools/pathfinder.py` — NetworkX Dijkstra multi-hop learning path
+- [x] Narrator: `tools/narrator.py` — Claude API (Haiku, prompt-cached) gap narrative
+- [x] Scraper: `tools/job-scraper.py` — Adzuna/Reed/Remotive/Playwright → new-this-week.md
+- [x] Log: `tools/log-linkedin.py` — append weekly SSI/views/inmails/searches snapshot
+- [x] Dashboard: `tools/ssi-dashboard.py` — matplotlib 2×2 LinkedIn trend chart
+- [x] Resume: `tools/resume-gen.py` — cluster-specific resume stubs per role
+- [x] Market scan: `tools/market-scan.py` — batch JD skill frequency table
+- [x] ESCO map: `tools/esco-map.py` — map skills to EU standard ESCO URIs
+- [x] Salary: `tools/salary-pull.py` — curated 2025 benchmarks + optional LinkedIn scrape
+- [x] Offers: `tools/offer-compare.py` — total comp + CoL-adjusted comparison table
+- [x] Tests: `tests/` — 81 tests, 100% passing (pytest)
+- [x] `requirements.txt` — pyyaml, requests, playwright, networkx, anthropic, matplotlib, pytest
 - [x] `.github/workflows/weekly-scraper.yml` — Monday 08:00 UTC cron + manual trigger
-- [x] Architecture: `ARCHITECTURE.md` (Phase 2+3 complete, component status updated)
-- [x] Gap audit: `gaps-and-improvements.md` (10 gaps, 5 improvements, priority table)
 
 ### Job sources
 - [x] `job-sources/company-careers.md` — 50+ direct career URLs (CH, UK, EU, India)

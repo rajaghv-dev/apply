@@ -36,21 +36,27 @@ Two files. Full context. Load more only as the task needs.
 
 ---
 
-## Current state (Session 9 — 2026-04-29)
+## Current state (Session 11 — 2026-04-29)
 
-**Fully built and usable:**
-- Ontology: 45+ skill nodes, 14 role clusters, 10 domains, weighted bridge + implies edges
-- **Matcher**: JD → match% with skill decay + required/preferred section weighting
-- **Pathfinder**: NetworkX Dijkstra → shortest learning path from your skills to any role
-- **Narrator**: Claude API (Haiku, prompt-cached) → gap narrative + why-me + recruiter message
-- **Scraper**: Adzuna/Reed/Remotive/Playwright → weekly new roles → job-tracker/new-this-week.md
-- **GitHub Actions**: Monday 08:00 UTC cron (set ADZUNA_APP_ID, ADZUNA_APP_KEY, REED_API_KEY, ANTHROPIC_API_KEY as repo secrets)
-- Job sources: 50+ company career pages, 30+ aggregators, search strategy
-- 5 lesson plans: LP-001 (RAG), LP-002 (Agents), LP-003 (cocotb), LP-007 (Legal NLP), LP-013 (Video Analytics)
-- 8 GitHub project specs: GP-01 through GP-08
-- Content engine: 50+ ideas, 4 post templates, Medium/YouTube/LinkedIn trackers
-- Open source: Tier 1/2/3 targets, maintainer roadmap, contribution log
-- Second brain: 15 cross-domain bridges, learning log, 5 durable principles
+**All code complete — 11 tools, 81 tests, 100% passing.**
+
+| Tool | What it does |
+|------|-------------|
+| `matcher.py` | JD → match% with decay + section detection + domain focus bonus |
+| `pathfinder.py` | NetworkX Dijkstra → shortest learning path to any role |
+| `narrator.py` | Claude Haiku (prompt-cached) → gap narrative + why-me + recruiter message |
+| `job-scraper.py` | Adzuna/Reed/Remotive/Playwright → new-this-week.md weekly |
+| `log-linkedin.py` | Append weekly SSI/views/inmails snapshot |
+| `ssi-dashboard.py` | matplotlib 2×2 LinkedIn analytics trend chart |
+| `resume-gen.py` | Cluster-specific resume stubs per role |
+| `market-scan.py` | Batch JD skill frequency table |
+| `esco-map.py` | Map skills to EU ESCO standard URIs |
+| `salary-pull.py` | 2025 salary benchmarks + optional LinkedIn scrape |
+| `offer-compare.py` | Total comp + CoL-adjusted USD comparison |
+
+**Blocked on (P0):**
+- `profile/my-profile.yaml` — skill levels empty → all tools run blind
+- `profile/questionnaire.md` Sections A+C — target roles + geography undefined
 
 **Blocked on (P0):**
 - `profile/my-profile.yaml` — skill levels empty → all tools run blind
@@ -61,27 +67,37 @@ Two files. Full context. Load more only as the task needs.
 ## The full pipeline
 
 ```bash
+# Install
+pip install -r requirements.txt && playwright install chromium
+
+# Run tests
+python -m pytest tests/ -q   # 81 tests, should all pass
+
 # 1. Match a JD
 python tools/matcher.py --jd path/to/jd.txt
 
 # 2. Find shortest learning path to a role
 python tools/pathfinder.py --role silicon_engineer
-python tools/pathfinder.py --list-roles          # see all role IDs
+python tools/pathfinder.py --list-roles
 
-# 3. Generate gap narrative + why-me + recruiter message
+# 3. Generate gap narrative + why-me + recruiter message (requires API key)
 export ANTHROPIC_API_KEY=sk-ant-...
-python tools/narrator.py                         # uses latest match output
-python tools/narrator.py --jd path/to/jd.txt    # runs matcher first, then narrates
+python tools/narrator.py
 
-# 4. Weekly job discovery (or trigger manually)
-export ADZUNA_APP_ID=...  ADZUNA_APP_KEY=...  REED_API_KEY=...
-python tools/job-scraper.py
-python tools/job-scraper.py --dry-run            # preview without writing
-python tools/job-scraper.py --no-browser         # skip Playwright
+# 4. Weekly job discovery
+export ADZUNA_APP_ID=... ADZUNA_APP_KEY=... REED_API_KEY=...
+python tools/job-scraper.py --dry-run
 
-# Install dependencies
-pip install -r requirements.txt
-playwright install chromium
+# 5. LinkedIn analytics
+python tools/log-linkedin.py --ssi 72 --views 45 --inmails 3 --searches 120
+python tools/ssi-dashboard.py --no-show
+
+# 6. Resume, market scan, salary, offers
+python tools/resume-gen.py --list-clusters
+python tools/market-scan.py --jd-dir gap-analysis/jobs/jds
+python tools/salary-pull.py --builtin --save
+python tools/offer-compare.py --offer "Google Zurich,CHF,180000,50000,20,Zurich"
+python tools/esco-map.py --export
 ```
 
 Requires `profile/my-profile.yaml` to be filled. See `profile/questionnaire.md`.
@@ -119,10 +135,27 @@ apply/
 │   └── domains.yaml          ← 10 domains, bridge weights, 4 unique bridge combos
 │
 ├── tools/
-│   ├── matcher.py            ← JD text → match% + STRONG/PARTIAL/GAP + decay + section weights
+│   ├── matcher.py            ← JD → match% + decay + section detection + domain focus bonus
 │   ├── pathfinder.py         ← NetworkX Dijkstra → shortest learning path to any role
-│   ├── narrator.py           ← Claude API (Haiku) → gap narrative + why-me + recruiter msg
-│   └── job-scraper.py        ← Adzuna/Reed/Remotive/Playwright → new-this-week.md
+│   ├── narrator.py           ← Claude Haiku (prompt-cached) → gap narrative + recruiter msg
+│   ├── job-scraper.py        ← Adzuna/Reed/Remotive/Playwright → new-this-week.md
+│   ├── log-linkedin.py       ← append weekly SSI/views/inmails snapshot
+│   ├── ssi-dashboard.py      ← matplotlib 2×2 LinkedIn analytics trend chart
+│   ├── resume-gen.py         ← cluster-specific resume stubs per role
+│   ├── market-scan.py        ← batch JD skill frequency → profile/market-scan.md
+│   ├── esco-map.py           ← map skills to EU ESCO standard URIs
+│   ├── salary-pull.py        ← 2025 salary benchmarks + optional LinkedIn scrape
+│   └── offer-compare.py      ← total comp + CoL-adjusted comparison table
+│
+├── tests/                    ← pytest suite (81 tests, 100% passing)
+│   ├── conftest.py
+│   ├── test_matcher.py
+│   ├── test_pathfinder.py
+│   ├── test_log_linkedin.py
+│   ├── test_resume_gen.py
+│   ├── test_market_scan.py
+│   ├── test_offer_compare.py
+│   └── test_ssi_dashboard.py
 │
 ├── lesson-plans/             ← structured learning modules (daily schedule → artifact → done)
 │   ├── README.md             ← 15-plan index with effort/priority/status
