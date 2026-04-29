@@ -16,9 +16,9 @@ type: project
 
 ## AD-03 | Single profile, not per-cluster overlays
 **Decision**: One `profile/my-profile.yaml` as source of truth.
-Per-cluster emphasis via `focus_bonus` multipliers in roles-graph.yaml (to implement in P3).
+Per-cluster emphasis via `FOCUS_BONUS = 1.15` multiplier in matcher.py on direct_score for skills whose domain matches the top detected role cluster.
 **Why**: Avoids duplication and drift. One file to maintain.
-**Status**: DECIDED (Option C from ARCHITECTURE.md Q3). focus_bonus not yet implemented.
+**Status**: DECIDED + IMPLEMENTED (Session 11). `get_focus_domains()` in matcher.py detects top role cluster from JD skills, applies ×1.15 to direct scores in that domain.
 
 ## AD-04 | Regex synonym matching for JD parsing (Phase 1)
 **Decision**: JD parsed via word-boundary regex against skills-graph.yaml synonyms.
@@ -72,3 +72,8 @@ are large deployed markets that combine hardware + AI — rare cross.
 **Decision**: Post order of operations: LinkedIn (2-3×/week, 30 min each) → Medium (2×/month, 3 hrs) → YouTube (1×/month, 6 hrs).
 **Why**: LinkedIn has the shortest feedback loop to recruiter visibility. Medium has SEO. YouTube has the highest trust signal but highest production cost.
 **Status**: DECIDED (Session 6). Adjust after measuring SSI response.
+
+## AD-13 | Test suite as regression guard
+**Decision**: All tool functions are covered by pytest tests in `tests/`. Run `pytest tests/ -q` before any future tool changes.
+**Why**: 11 tools interact (matcher feeds narrator, pathfinder reads roles-graph). Tests prevent regressions when patching one tool from breaking another.
+**Status**: DECIDED (Session 11). 81 tests, 100% passing at merge.

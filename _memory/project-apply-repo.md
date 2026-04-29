@@ -1,6 +1,6 @@
 ---
 name: apply repo — career intelligence system
-description: GitHub repo rajaghv-dev/apply — full system map, cold-start, current state (Session 9)
+description: GitHub repo rajaghv-dev/apply — full system map, cold-start, current state (Session 11)
 type: project
 ---
 
@@ -9,39 +9,48 @@ Local: /home/raja/apply
 Git: main branch, remote = origin
 
 **Purpose**: Job search engine + second brain + evidence engine + reputation system.
-The flywheel: gap analysis → lesson plan → build project → publish content → update profile → apply.
+Flywheel: gap analysis → lesson plan → build project → publish content → update profile → apply.
 
 **Cold-start (two files only)**:
 ```
-Read sessions.md and context.md, then continue from Session 9.
+Read sessions.md and context.md, then continue from Session 11.
 ```
 
 **Current blockers** (P0):
 - `profile/my-profile.yaml` — skill levels all blank → all tools run blind
 - `profile/questionnaire.md` Sections A+C — target roles + geography undefined
 
-**Code status (Session 9)**: ALL Phase 2 + Phase 3 core code complete.
-- `tools/matcher.py` — skill decay (tiered last_used) + JD section detection (required 2×, preferred 1×)
-- `tools/pathfinder.py` — NetworkX Dijkstra: shortest learning path from profile to any role
-- `tools/narrator.py` — Claude Haiku (prompt-cached): gap narrative + why-me + recruiter message; needs ANTHROPIC_API_KEY
-- `tools/job-scraper.py` — Adzuna/Reed/Remotive/Playwright → new-this-week.md + seen.txt dedup
-- `requirements.txt` — pyyaml, requests, playwright, networkx, anthropic
-- `.github/workflows/weekly-scraper.yml` — Monday 08:00 UTC cron; needs ADZUNA_APP_ID, ADZUNA_APP_KEY, REED_API_KEY as repo secrets
+**Code status (Session 11)**: ALL code complete. 11 tools. 81 tests, 100% passing. Zero remaining items.
 
-**Remaining code** (gated on profile data or design decisions):
-- P3-2: Domain focus bonus in matcher (Q3 answer needed)
-- P3-5: Resume cluster generation (needs my-profile.yaml filled first)
+| Tool | Status | What it does |
+|------|--------|-------------|
+| matcher.py | ✅ | JD → match% + decay + section detection + domain focus bonus (×1.15) |
+| pathfinder.py | ✅ | NetworkX Dijkstra → shortest learning path from profile to any role |
+| narrator.py | ✅ | Claude Haiku (prompt-cached) → gap narrative + why-me + recruiter msg |
+| job-scraper.py | ✅ | Adzuna/Reed/Remotive/Playwright → new-this-week.md + seen.txt dedup |
+| log-linkedin.py | ✅ | Append weekly SSI/views/inmails/searches to analytics-log.md |
+| ssi-dashboard.py | ✅ | matplotlib 2×2 LinkedIn analytics trend chart → ssi-dashboard.png |
+| resume-gen.py | ✅ | Cluster-specific resume stubs from profile YAML (14 clusters) |
+| market-scan.py | ✅ | Batch JD skill frequency table → profile/market-scan.md |
+| esco-map.py | ✅ | 40+ skills mapped to EU ESCO standard URIs |
+| salary-pull.py | ✅ | 2025 salary benchmarks (6 roles × geo) + optional LinkedIn scrape |
+| offer-compare.py | ✅ | Total comp + CoL-adjusted USD comparison → job-tracker/offers.md |
+
+**GitHub secrets needed to activate automated features:**
+- `ADZUNA_APP_ID`, `ADZUNA_APP_KEY` — Adzuna job search API
+- `REED_API_KEY` — Reed UK jobs API
+- `ANTHROPIC_API_KEY` — for narrator.py
 
 ---
 
-## Full file map (Session 9 state)
+## Full file map (Session 11 state)
 
 ```
-ARCHITECTURE.md           system design — Phase 2+3 complete, component status updated
-TODO.md                   P0/P1/P2/P3 action list + done log (all Session 8+9 items ticked)
-requirements.txt          pyyaml, requests, playwright, networkx, anthropic
+ARCHITECTURE.md           system design — all phases complete, 13 components listed
+TODO.md                   P3 all done; only P0 data-entry blockers remain
+requirements.txt          pyyaml, requests, playwright, networkx, anthropic, matplotlib, pytest
 context.md                stable background — load every session
-sessions.md               per-session handoff — load every session
+sessions.md               per-session handoff — load every session (Sessions 1–11)
 prompts.md                all prompts P001–P007 + reusable templates
 gaps-and-improvements.md  10 gaps + 5 improvements (GAP-09, IMP-02, IMP-03 resolved)
 
@@ -54,18 +63,37 @@ profile/
   linkedin.md             LinkedIn copy + baseline metrics [EMPTY]
   domains.md              10 vertical domain deep-dives + target companies
   questionnaire.md        7-section question set (A–G) [EMPTY — P0 blocker]
-  market-scan.md          JD keyword frequency + salary benchmark template [EMPTY]
+  market-scan.md          JD keyword frequency + salary benchmarks [EMPTY until tools run]
 
 ontology/
   skills-graph.yaml       45+ skill nodes, synonyms, weighted implies edges, level descriptors
   roles-graph.yaml        14 role clusters, required/preferred skills, title synonyms, bridge bonuses
   domains.yaml            10 domains, cross-domain bridge weights, 4 unique_bridges
+  esco-mapping.yaml       [auto-generated by esco-map.py --export]
 
 tools/
-  matcher.py              JD → match% + STRONG/PARTIAL/GAP + decay notes + section weights + role clusters
-  pathfinder.py           NetworkX Dijkstra → shortest learning path from profile skills to any role
-  narrator.py             Claude Haiku (prompt-cached) → gap narrative + why-me + recruiter message
+  matcher.py              JD → match% + STRONG/PARTIAL/GAP + decay + section weights + focus bonus
+  pathfinder.py           NetworkX Dijkstra → shortest learning path from profile to any role
+  narrator.py             Claude Haiku (prompt-cached) → gap narrative + why-me + recruiter msg
   job-scraper.py          Adzuna/Reed/Remotive/Playwright → new-this-week.md + seen.txt dedup
+  log-linkedin.py         append weekly SSI/views/inmails snapshot to linkedin/analytics-log.md
+  ssi-dashboard.py        matplotlib 2×2 trend chart → linkedin/ssi-dashboard.png
+  resume-gen.py           cluster-specific resume stubs → resume/cluster-{id}.md
+  market-scan.py          batch JD scan → skill frequency table → profile/market-scan.md
+  esco-map.py             ESCO URI mapping (40+ skills); --export / --annotate
+  salary-pull.py          curated 2025 salary benchmarks + optional LinkedIn scrape
+  offer-compare.py        total comp + CoL-adjusted USD; saves job-tracker/offers.md
+
+tests/
+  conftest.py             shared fixtures (minimal YAML stubs)
+  test_matcher.py         26 tests
+  test_pathfinder.py      14 tests
+  test_log_linkedin.py    5 tests
+  test_offer_compare.py   11 tests
+  test_resume_gen.py      8 tests
+  test_market_scan.py     10 tests
+  test_ssi_dashboard.py   8 tests
+  [total: 81 tests, 100% passing]
 
 lesson-plans/
   README.md               15-plan index with effort/priority/status
@@ -74,69 +102,47 @@ lesson-plans/
   LP-003-cocotb.md        Python hardware verification — 5 days
   LP-007-legal-nlp.md     Legal NLP + contract analysis — 5 days
   LP-013-video-analytics.md Video analytics + edge CV — 7 days
-  [LP-004–006, 008–012, 014–015 stubs in README, full files not yet written]
+  [LP-004–006, 008–012, 014–015: stubs in README, full files not written]
 
 second-brain/
-  README.md               system design + flywheel diagram
-  knowledge-map.md        15 cross-domain bridges with content angles
-  learning-log.md         protocol + resource library per domain
-  insights.md             5 durable cross-domain principles
-  connections.md          bridge registry (published / unpublished)
+  README.md, knowledge-map.md, learning-log.md, insights.md, connections.md
 
 content/
-  README.md               flywheel, content types ROI, 4 pillars, cadence targets
-  pipeline.md             IDEA→PUBLISHED workflow + weekly schedule + quality checklists
-  ideas.md                50+ content ideas (Bridge/Tutorial/Landscape/Career/Quick)
-  medium.md               12 articles tracked + article template
-  linkedin-posts.md       post queue + 4 templates + hashtag clusters
-  youtube.md              10 videos tracked + production checklist
+  README.md, pipeline.md, ideas.md (50+ ideas), medium.md, linkedin-posts.md, youtube.md
 
 github-projects/
-  README.md               project pipeline + index (GP-01 through GP-08)
-  ideas.md                8 project specs with tech stack + done criteria
+  README.md, ideas.md (8 project specs GP-01–GP-08)
 
 open-source/
-  README.md               contributor → maintainer path
-  targets.md              Tier 1 (cocotb, LangChain, OpenLane), Tier 2, Tier 3, own projects
-  log.md                  contribution tracker [EMPTY]
-  maintainer-roadmap.md   18-month per-project path
+  README.md, targets.md, log.md, maintainer-roadmap.md
 
 evidence/
-  platform-tracker.md     all-platform evidence registry [EMPTY]
-  projects.md             skill → proof map [one entry: this repo]
+  platform-tracker.md [EMPTY], projects.md [one entry: this repo]
 
 gap-analysis/
-  template.md             reusable JD analysis template
-  jobs/                   match-{N}pct-latest.md + narration-{N}pct-{date}.md [EMPTY — no JDs run yet]
+  template.md, jobs/ [EMPTY — no JDs run yet]
 
 job-sources/
-  company-careers.md      50+ direct career URLs (CH, UK, EU, India)
-  aggregators.md          30+ boards by region + specialist boards
-  search-strategy.md      weekly routine + LinkedIn saved search templates + cold DM
-  scraping.md             scraping vs API analysis + recommended free setup
+  company-careers.md (50+ URLs), aggregators.md (30+ boards),
+  search-strategy.md, scraping.md
 
 job-tracker/
-  applications.md         pipeline tracker [EMPTY]
-  new-this-week.md        latest scraper output [auto-generated]
-  seen.txt                dedup hash registry [auto-generated]
+  applications.md [EMPTY], new-this-week.md [auto-generated], seen.txt [auto-generated]
+  offers.md [auto-generated by offer-compare.py]
 
-network/
-  contacts.md             contact map + referral template [EMPTY]
-
-interview/
-  prep.md                 STAR bank, technical deep-dives, company research [EMPTY]
+linkedin/
+  analytics-log.md [auto-generated by log-linkedin.py]
+  ssi-dashboard.png [auto-generated by ssi-dashboard.py]
 
 resume/
-  README.md               5-cluster strategy + ATS checklist
+  README.md (strategy + ATS checklist)
+  cluster-{id}.md files [auto-generated by resume-gen.py]
 
-learning/
-  roadmap.md              gap → learning plan [EMPTY — feeds from gap analysis]
+network/contacts.md [EMPTY]
+interview/prep.md [EMPTY]
+learning/roadmap.md [EMPTY]
 
 _memory/
-  MEMORY-INDEX.md         index (this file + siblings)
-  user-profile.md         who the user is
-  project-apply-repo.md   THIS FILE
-  session-protocol.md     cold-start + load guide
-  arch-decisions.md       AD-01 through AD-12
-  open-questions.md       Q1 through Q12
+  MEMORY-INDEX.md, user-profile.md, project-apply-repo.md (THIS FILE)
+  session-protocol.md, arch-decisions.md (AD-01–AD-13), open-questions.md (Q1–Q12)
 ```

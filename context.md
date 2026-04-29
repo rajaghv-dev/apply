@@ -50,7 +50,7 @@ That's all. Two files. Load more only as the task needs.
 apply/
 ├── ARCHITECTURE.md     full system design (read before making structural changes)
 ├── TODO.md             prioritized action list (P0 blockers first)
-├── requirements.txt    pyyaml, requests, playwright, networkx, anthropic
+├── requirements.txt    pyyaml, requests, playwright, networkx, anthropic, matplotlib, pytest
 ├── context.md          THIS FILE — stable background
 ├── sessions.md         per-session handoff (what was done, what's next)
 ├── prompts.md          all prompts indexed (P001–P007 + reusable templates)
@@ -60,11 +60,19 @@ apply/
 │
 ├── profile/            skills, LinkedIn copy, domain deep-dives, questionnaire
 ├── ontology/           skills graph, roles graph, domains — the matching engine's brain
-├── tools/
-│   ├── matcher.py      JD text → match% + STRONG/PARTIAL/GAP (decay + section detection)
+├── tools/              11 tools — all complete, 81 tests passing
+│   ├── matcher.py      JD → match% + decay + section detection + domain focus bonus
 │   ├── pathfinder.py   NetworkX Dijkstra → shortest learning path to any role
-│   ├── narrator.py     Claude API (Haiku) → gap narrative + why-me + recruiter message
-│   └── job-scraper.py  Adzuna/Reed/Remotive/Playwright → new-this-week.md
+│   ├── narrator.py     Claude Haiku (prompt-cached) → gap narrative + recruiter msg
+│   ├── job-scraper.py  Adzuna/Reed/Remotive/Playwright → new-this-week.md
+│   ├── log-linkedin.py append weekly SSI/views/inmails snapshot
+│   ├── ssi-dashboard.py  matplotlib 2×2 LinkedIn trend chart → PNG
+│   ├── resume-gen.py   cluster-specific resume stubs from profile YAML
+│   ├── market-scan.py  batch JD skill frequency → profile/market-scan.md
+│   ├── esco-map.py     map skills to EU ESCO standard URIs
+│   ├── salary-pull.py  2025 salary benchmarks + optional LinkedIn scrape
+│   └── offer-compare.py  total comp + CoL-adjusted comparison table
+├── tests/              pytest suite — 81 tests, 100% passing
 │
 ├── lesson-plans/       15 structured learning modules (objectives → resources → artifact → done)
 ├── second-brain/       knowledge map, learning log, insights, cross-domain connections
@@ -89,16 +97,18 @@ apply/
 2. `profile/questionnaire.md` Sections A+C — target roles and geography not defined
 
 ## What's fully built and ready to use
-- **Full pipeline**: `matcher.py --jd <file>` → `pathfinder.py --role <id>` → `narrator.py`
-- Ontology (45+ skill nodes, 14 role clusters, 10 domains, weighted bridge edges)
-- Matcher: skill decay + JD required/preferred section detection (required 2× weight)
-- Pathfinder: NetworkX Dijkstra over implies graph → ordered learning plan per role
-- Narrator: Claude Haiku with prompt caching → gap narrative, why-me, recruiter message
-- Job scraper: Adzuna/Reed/Remotive/Playwright → auto-dedup → new-this-week.md
-- GitHub Actions: weekly cron scraper (set ADZUNA_APP_ID, ADZUNA_APP_KEY, REED_API_KEY, ANTHROPIC_API_KEY as repo secrets)
-- Job sources (50+ company career pages, 30+ aggregators, search strategy)
-- 5 lesson plans with daily schedules (LP-001 RAG, LP-002 Agents, LP-003 cocotb, LP-007 Legal NLP, LP-013 Video Analytics)
+**All code complete — 11 tools, 81 tests, 100% passing. Zero remaining code items.**
+
+- **Core pipeline**: `matcher.py --jd <file>` → `pathfinder.py --role <id>` → `narrator.py`
+- **Job discovery**: `job-scraper.py` (Adzuna/Reed/Remotive/Playwright) + GH Actions weekly cron
+- **LinkedIn loop**: `log-linkedin.py` → `ssi-dashboard.py` (weekly snapshot + chart)
+- **Resume**: `resume-gen.py` → cluster-specific stubs per role (14 clusters)
+- **Market intel**: `market-scan.py` (batch JD freq) + `salary-pull.py` (2025 benchmarks)
+- **Decisions**: `offer-compare.py` (total comp + CoL-adjusted) + `esco-map.py` (EU ESCO URIs)
+- Ontology: 45+ skill nodes, 14 role clusters, 10 domains, weighted implies edges
+- Job sources: 50+ company career pages, 30+ aggregators, search strategy
+- 5 lesson plans (LP-001 RAG, LP-002 Agents, LP-003 cocotb, LP-007 Legal NLP, LP-013 Video)
 - 8 GitHub project specs (GP-01 through GP-08)
 - Content engine: 50+ ideas, templates, trackers for Medium/LinkedIn/YouTube
 - Open source: Tier 1/2/3 targets, maintainer roadmap, contribution log
-- Second brain: knowledge map (15 bridges), learning log protocol, insights, connections registry
+- Second brain: 15 cross-domain bridges, learning log, 5 durable principles

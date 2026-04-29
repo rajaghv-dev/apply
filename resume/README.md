@@ -21,14 +21,23 @@ Before submitting any resume:
 - [ ] File format: PDF (ATS-safe)
 - [ ] File name: `FirstName-LastName-RoleTitle.pdf`
 
+## Generate cluster resume stubs
+
+`tools/resume-gen.py` auto-generates a markdown stub per role cluster from `profile/my-profile.yaml`:
+
+```bash
+python tools/resume-gen.py                       # generate all 14 clusters
+python tools/resume-gen.py --cluster silicon_engineer
+python tools/resume-gen.py --list-clusters       # see all cluster IDs
+```
+
+Output: `resume/cluster-{id}.md` per cluster — skills section, target titles, target companies.
+Fill in once, regenerate after updating your profile.
+
 ## Files
 
-Store resumes here:
+- `resume/cluster-{id}.md` — auto-generated stubs (edit before submission)
 - `resume/master-cv.pdf` — full career history (not for submission)
-- `resume/cluster-hardware.pdf`
-- `resume/cluster-ai-systems.pdf`
-- `resume/cluster-legaltech.pdf`
-- `resume/cluster-fintech.pdf`
-- `resume/cluster-generalist.pdf`
+- Cluster PDFs for submission: export from the markdown stubs
 
-> Add to .gitignore if resumes contain personal info you don't want public.
+> Add PDF files to `.gitignore` if they contain personal info you don't want public.

@@ -157,6 +157,16 @@ LOCATIONS = ["Switzerland", "UK", "United Kingdom", "Germany",
 
 ---
 
-## Next Step
+## Scraper is built ✓
 
-Say: "Build the job scraper script" and I'll write `tools/job-scraper.py` using Adzuna + Indeed APIs + Playwright for the top 10 company pages, outputting to `job-tracker/new-this-week.md`.
+`tools/job-scraper.py` — Adzuna + Reed + Remotive APIs + Playwright for 10 company career pages.
+Output: `job-tracker/new-this-week.md` + `job-tracker/seen.txt` (dedup registry).
+Automated weekly via `.github/workflows/weekly-scraper.yml` (Monday 08:00 UTC).
+
+```bash
+python tools/job-scraper.py --dry-run        # preview without writing
+python tools/job-scraper.py --no-browser     # skip Playwright
+python tools/job-scraper.py --source adzuna  # one source only
+```
+
+Set `ADZUNA_APP_ID`, `ADZUNA_APP_KEY`, `REED_API_KEY` as GitHub repo secrets to activate the cron.
