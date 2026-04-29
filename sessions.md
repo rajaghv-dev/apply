@@ -179,6 +179,31 @@
 
 ---
 
+## Session 8 — 2026-04-29
+
+**Goal**: Complete all code gaps — build missing tools, upgrade matcher, add CI.
+
+**Done**:
+- `tools/matcher.py` — two major upgrades:
+  - **Skill decay**: tiered recency penalty on `last_used` (−0% ≤2yr, −20% ≤5yr, −40% ≤10yr, −60% >10yr); applied to direct_score and implied_score; decay note shown in report and saved markdown
+  - **JD section detection**: walks JD line-by-line, detects required/preferred headers via regex; weights required skills 2×, preferred 1× in match%; report labels each gap as [REQUIRED] or [preferred]
+- `tools/job-scraper.py` — new; four sources: Adzuna API (EU/UK/IN/CH), Reed API (UK), Remotive (remote), Playwright (10 company career pages); deduplication via MD5 hash of title+company stored in `job-tracker/seen.txt`; outputs to `job-tracker/new-this-week.md`; supports `--dry-run`, `--no-browser`, `--source` flags
+- `requirements.txt` — pyyaml, requests, playwright
+- `.github/workflows/weekly-scraper.yml` — GH Actions cron (Monday 08:00 UTC) + manual trigger; commits new-this-week.md + seen.txt automatically
+
+**Open / Next Session**:
+- [ ] **P0-1**: Fill `profile/my-profile.yaml` — skill levels + `last_used` (20–30 min)
+- [ ] **P0-2**: Answer `profile/questionnaire.md` Sections A+C (15 min)
+- [ ] **P1-1**: Pick one lesson plan and start it (LP-001 RAG or LP-003 cocotb)
+- [ ] **P1-7**: Answer open-questions Q1–Q12 (20 min) — unblocks Phase 2
+- [ ] Set `ADZUNA_APP_ID`, `ADZUNA_APP_KEY`, `REED_API_KEY` as GitHub repo secrets to activate weekly scraper
+
+**Key decisions**:
+- All code gaps from gaps-and-improvements.md + TODO.md P2-P3 build items are now complete
+- Only remaining code gaps: NetworkX multi-hop (P3-1, gated on Q4 answer) and Claude API in scraper (P3-3, gated on Q5 answer) — both require profile data first
+
+---
+
 ## Session Template (copy for each new session)
 
 ## Session N — YYYY-MM-DD
