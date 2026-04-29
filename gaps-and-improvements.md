@@ -135,11 +135,10 @@ LinkedIn + GitHub are the primary vectors but companies also run ATS keyword scr
 
 ---
 
-### GAP-09 | Scraper not built (LOW — nice to have)
+### ~~GAP-09 | Scraper not built~~ ✓ RESOLVED (Session 8)
 
-`job-sources/scraping.md` has the design but no code exists yet.
-
-**Fix:** Say "build the scraper" and I'll write `tools/job-scraper.py`.
+`tools/job-scraper.py` built: Adzuna/Reed/Remotive APIs + Playwright for 10 company career pages.
+Dedup via `job-tracker/seen.txt`. Weekly GH Actions cron in `.github/workflows/weekly-scraper.yml`.
 
 ---
 
@@ -168,22 +167,15 @@ Example:
 | RTL Design | EXPERT | 2024 | 28nm SoC, 10M gate count | github.com/... |
 ```
 
-### IMP-02 | Gap analysis needs a numeric score
+### ~~IMP-02 | Gap analysis needs a numeric score~~ ✓ RESOLVED (Session 8)
 
-The template uses STRONG / PARTIAL / GAP. Add a match score so you can
-prioritize which roles to apply to first:
+`tools/matcher.py` outputs match% weighted by JD section (required 2×, preferred 1×).
+Apply ≥60% | Stretch 40–59% | Skip <40%. Saved to `gap-analysis/jobs/match-{N}pct-latest.md`.
 
-```
-Match score = (STRONG×3 + PARTIAL×1) / (total requirements × 3) × 100
-Target: apply only to roles with match score ≥ 60%
-```
+### ~~IMP-03 | Weekly cadence needs a trigger~~ ✓ RESOLVED (Session 8)
 
-### IMP-03 | Weekly cadence needs a trigger
-
-No automated reminder to run the search routine. Options:
-- Cron job that opens `job-sources/search-strategy.md` and sends an email
-- GitHub Action that runs weekly and posts a summary issue
-- Simple calendar block
+`.github/workflows/weekly-scraper.yml` — Monday 08:00 UTC cron + manual trigger.
+Auto-commits `job-tracker/new-this-week.md` and `seen.txt`.
 
 ### IMP-04 | LinkedIn post pipeline needs content queue
 
@@ -201,15 +193,22 @@ Before applying to any company, need 30-min research: culture, tech stack, recen
 
 ## PRIORITY ORDER
 
-| Priority | Action | Effort | Unlocks |
-|----------|--------|--------|---------|
-| 1 | Fill `profile/questionnaire.md` | 60 min | Everything |
-| 2 | Run market scan (20 JDs → keyword frequency) | 90 min | Gap analysis quality |
-| 3 | Pull LinkedIn baseline (SSI, views, InMails) | 5 min | LinkedIn optimization |
-| 4 | Inventory existing evidence (GitHub, pubs, etc.) | 30 min | Evidence map |
-| 5 | Fill network contacts (1st degree at target cos) | 20 min | Referral pipeline |
-| 6 | Run first full gap analysis on a real JD | 30 min | First application |
-| 7 | Build scraper | 2 hrs | Automated discovery |
+_Updated Session 9 — all code items complete; remaining actions require user input._
+
+| Priority | Action | Status | Effort | Unlocks |
+|----------|--------|--------|--------|---------|
+| 1 | Fill `profile/questionnaire.md` A+C | ⬜ P0 BLOCKER | 15 min | Everything |
+| 2 | Fill `profile/my-profile.yaml` | ⬜ P0 BLOCKER | 20–30 min | Matcher, pathfinder, narrator |
+| 3 | Run first full pipeline on a real JD | ⬜ (after P0) | 30 min | First application |
+| 4 | Pull LinkedIn baseline (SSI, views, InMails) | ⬜ P1 | 5 min | LinkedIn optimization |
+| 5 | Inventory existing evidence (GitHub, pubs, etc.) | ⬜ P1 | 30 min | Evidence map |
+| 6 | Fill network contacts (1st degree at target cos) | ⬜ P2 | 20 min | Referral pipeline |
+| 7 | Run market scan (20 JDs → keyword frequency) | ⬜ P2 | 90 min | Gap analysis quality |
+| — | Build scraper | ✅ Done (Session 8) | — | — |
+| — | Skill decay in matcher | ✅ Done (Session 8) | — | — |
+| — | JD section detection in matcher | ✅ Done (Session 8) | — | — |
+| — | NetworkX learning pathfinder | ✅ Done (Session 9) | — | — |
+| — | Claude API narrator | ✅ Done (Session 9) | — | — |
 
 ---
 

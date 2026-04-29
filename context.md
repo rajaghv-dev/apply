@@ -50,13 +50,21 @@ That's all. Two files. Load more only as the task needs.
 apply/
 ├── ARCHITECTURE.md     full system design (read before making structural changes)
 ├── TODO.md             prioritized action list (P0 blockers first)
+├── requirements.txt    pyyaml, requests, playwright, networkx, anthropic
 ├── context.md          THIS FILE — stable background
 ├── sessions.md         per-session handoff (what was done, what's next)
 ├── prompts.md          all prompts indexed (P001–P007 + reusable templates)
 │
+├── .github/workflows/
+│   └── weekly-scraper.yml   Monday 08:00 UTC cron — scrape + auto-commit
+│
 ├── profile/            skills, LinkedIn copy, domain deep-dives, questionnaire
 ├── ontology/           skills graph, roles graph, domains — the matching engine's brain
-├── tools/              matcher.py — JD text → match score
+├── tools/
+│   ├── matcher.py      JD text → match% + STRONG/PARTIAL/GAP (decay + section detection)
+│   ├── pathfinder.py   NetworkX Dijkstra → shortest learning path to any role
+│   ├── narrator.py     Claude API (Haiku) → gap narrative + why-me + recruiter message
+│   └── job-scraper.py  Adzuna/Reed/Remotive/Playwright → new-this-week.md
 │
 ├── lesson-plans/       15 structured learning modules (objectives → resources → artifact → done)
 ├── second-brain/       knowledge map, learning log, insights, cross-domain connections
@@ -65,9 +73,9 @@ apply/
 ├── open-source/        contribution strategy, targets, maintainer roadmap, log
 ├── evidence/           platform tracker, projects map
 │
-├── gap-analysis/       JD analysis template + per-role files
+├── gap-analysis/       JD analysis template + per-role files + narration outputs
 ├── job-sources/        company careers, aggregators, search strategy, scraping
-├── job-tracker/        applications pipeline
+├── job-tracker/        applications pipeline, new-this-week.md, seen.txt
 ├── network/            contacts, referral outreach
 ├── interview/          STAR bank, technical prep, company research
 ├── resume/             cluster strategy, ATS checklist
@@ -77,15 +85,20 @@ apply/
 ```
 
 ## Current Blockers (P0)
-1. `profile/my-profile.yaml` — all skill levels blank → matcher produces zero signal
+1. `profile/my-profile.yaml` — all skill levels blank → matcher/pathfinder/narrator all run blind
 2. `profile/questionnaire.md` Sections A+C — target roles and geography not defined
 
 ## What's fully built and ready to use
+- **Full pipeline**: `matcher.py --jd <file>` → `pathfinder.py --role <id>` → `narrator.py`
 - Ontology (45+ skill nodes, 14 role clusters, 10 domains, weighted bridge edges)
-- Matcher script (`python tools/matcher.py --jd file.txt` — needs profile filled first)
+- Matcher: skill decay + JD required/preferred section detection (required 2× weight)
+- Pathfinder: NetworkX Dijkstra over implies graph → ordered learning plan per role
+- Narrator: Claude Haiku with prompt caching → gap narrative, why-me, recruiter message
+- Job scraper: Adzuna/Reed/Remotive/Playwright → auto-dedup → new-this-week.md
+- GitHub Actions: weekly cron scraper (set ADZUNA_APP_ID, ADZUNA_APP_KEY, REED_API_KEY, ANTHROPIC_API_KEY as repo secrets)
 - Job sources (50+ company career pages, 30+ aggregators, search strategy)
 - 5 lesson plans with daily schedules (LP-001 RAG, LP-002 Agents, LP-003 cocotb, LP-007 Legal NLP, LP-013 Video Analytics)
-- 8 GitHub project specs (legal-contract-agent, compliance-checker, finance-risk-agent, riscv-nn-accel, eda-mcp-server, cocotb-examples, cctv-analytics-demo, llm-rtl-gen)
+- 8 GitHub project specs (GP-01 through GP-08)
 - Content engine: 50+ ideas, templates, trackers for Medium/LinkedIn/YouTube
 - Open source: Tier 1/2/3 targets, maintainer roadmap, contribution log
 - Second brain: knowledge map (15 bridges), learning log protocol, insights, connections registry

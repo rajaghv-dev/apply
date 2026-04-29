@@ -230,6 +230,28 @@
 
 ---
 
+## Session 10 — 2026-04-29
+
+**Goal**: Full MD sync — bring all documentation and in-repo memory files up to Session 9 state.
+
+**Done**:
+- `context.md` — updated tools list (all 4 tools), "What's fully built" section, added `.github/` and `requirements.txt` to file map
+- `README.md` — full rewrite: Session 9 state, all 4 tools in "fully built" section, complete pipeline usage examples, full file tree (added tools/, .github/, job-tracker/new-this-week.md + seen.txt), updated token-reduction load guide
+- `_memory/project-apply-repo.md` (in-repo) — synced to Session 9 state: code status, full file map with all new tools, remaining code items
+- `_memory/MEMORY-INDEX.md` — "Session 7" → "Session 9", last-synced date added
+- `gaps-and-improvements.md` — GAP-09, IMP-02, IMP-03 marked resolved with implementation details; priority table updated (code items ticked, remaining actions reordered)
+
+**Open / Next Session**:
+- [ ] **P0-1**: Fill `profile/my-profile.yaml`
+- [ ] **P0-2**: Answer `profile/questionnaire.md` Sections A+C
+- [ ] Run the full pipeline on a real JD end-to-end
+
+**Key decisions**:
+- All doc/memory files are now in sync with repo state as of Session 9
+- In-repo `_memory/` is the canonical in-Git copy; `~/.claude/memory/` is the live Claude copy; keep both in sync at end of each session
+
+---
+
 ## Session Template (copy for each new session)
 
 ## Session N — YYYY-MM-DD
