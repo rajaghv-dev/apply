@@ -10,23 +10,31 @@ Answer as much or as little as you want per session. Every answer improves match
 ## SECTION A — Who You Are (baseline)
 
 **A1. Full name (as on LinkedIn):**
+[Answer: ]
 
 **A2. Current location (city, country):**
+[Answer: ]
 
 **A3. Where can you legally work without sponsorship?**
 (e.g., "India — yes, UK — no, EU — no, Switzerland — no, USA — no")
+[Answer: ]
 
 **A4. If you need sponsorship, are you open to roles that offer it?**
+[Answer: ]
 
 **A5. Total years of professional experience:**
+[Answer: ]
 
 **A6. Highest education:**
 (Degree, field, institution, year — public; or just field + level if you prefer)
+[Answer: ]
 
 **A7. Current employment status:**
 (Employed / Notice period / Available now)
+[Answer: ]
 
 **A8. Target start date:**
+[Answer: ]
 
 ---
 
@@ -92,29 +100,34 @@ For each domain, answer: Did you do this professionally? At what level? When las
 
 **C1. List your top 3 target role titles:**
 (Be specific: "Staff Silicon Engineer" not just "engineer")
-1.
-2.
-3.
+1. [Answer: ]
+2. [Answer: ]
+3. [Answer: ]
 
 **C2. IC vs. management track preference:**
 (IC only / open to management / prefer management)
+[Answer: ]
 
 **C3. Company size/stage preference:**
 (FAANG / large corp / scaleup 200-2000 / early startup / any)
+[Answer: ]
 
 **C4. Geography priority order:**
 (e.g., "1. Switzerland 2. UK 3. Remote EU 4. India")
+[Answer: ]
 
 **C5. On-site / hybrid / remote preference:**
+[Answer: ]
 
 **C6. Sectors to exclude:**
 (e.g., "no defense", "no gambling")
+[Answer: ]
 
 **C7. Target total compensation range:**
-- Switzerland: CHF ___k/yr
-- UK: GBP ___k/yr
-- India: INR ___L/yr
-- Other: ___
+- Switzerland: CHF ___k/yr [Answer: ]
+- UK: GBP ___k/yr [Answer: ]
+- India: INR ___L/yr [Answer: ]
+- Other: ___ [Answer: ]
 
 ---
 

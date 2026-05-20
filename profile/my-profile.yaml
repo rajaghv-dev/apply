@@ -1,6 +1,11 @@
 # My Skills Profile — machine-readable for matcher.py
 # Fill in levels: EXPERT / PROFICIENT / FAMILIAR
 # Add evidence links or descriptions
+#
+# Per-field guide (applies to every skill below):
+#   level:     EXPERT / PROFICIENT / FAMILIAR   (leave blank if not applicable)
+#   last_used: year, e.g. 2024                  (most recent professional or substantive use)
+#   evidence:  link OR short description        (repo URL, project name, paper, role context)
 
 skills:
   # ── HARDWARE ──
@@ -10,218 +15,218 @@ skills:
     evidence:       # link or description
 
   vlsi_physical_design:
-    level:
-    last_used:
-    evidence:
+    level:          # EXPERT / PROFICIENT / FAMILIAR
+    last_used:      # year e.g. 2024
+    evidence:       # link or description
 
   dft:
-    level:
-    last_used:
-    evidence:
+    level:          # EXPERT / PROFICIENT / FAMILIAR
+    last_used:      # year e.g. 2024
+    evidence:       # link or description
 
   soc_architecture:
-    level:
-    last_used:
-    evidence:
+    level:          # EXPERT / PROFICIENT / FAMILIAR
+    last_used:      # year e.g. 2024
+    evidence:       # link or description
 
   timing_analysis:
-    level:
-    last_used:
-    evidence:
+    level:          # EXPERT / PROFICIENT / FAMILIAR
+    last_used:      # year e.g. 2024
+    evidence:       # link or description
 
   synthesis:
-    level:
-    last_used:
-    evidence:
+    level:          # EXPERT / PROFICIENT / FAMILIAR
+    last_used:      # year e.g. 2024
+    evidence:       # link or description
 
   hardware_verification:
-    level:
-    last_used:
-    evidence:
+    level:          # EXPERT / PROFICIENT / FAMILIAR
+    last_used:      # year e.g. 2024
+    evidence:       # link or description
 
   fpga_design:
-    level:
-    last_used:
-    evidence:
+    level:          # EXPERT / PROFICIENT / FAMILIAR
+    last_used:      # year e.g. 2024
+    evidence:       # link or description
 
   # ── EMBEDDED ──
   embedded_firmware:
-    level:
-    last_used:
-    evidence:
+    level:          # EXPERT / PROFICIENT / FAMILIAR
+    last_used:      # year e.g. 2024
+    evidence:       # link or description
 
   embedded_cpp:
-    level:
-    last_used:
-    evidence:
+    level:          # EXPERT / PROFICIENT / FAMILIAR
+    last_used:      # year e.g. 2024
+    evidence:       # link or description
 
   rtos:
-    level:
-    last_used:
-    evidence:
+    level:          # EXPERT / PROFICIENT / FAMILIAR
+    last_used:      # year e.g. 2024
+    evidence:       # link or description
 
   device_drivers:
-    level:
-    last_used:
-    evidence:
+    level:          # EXPERT / PROFICIENT / FAMILIAR
+    last_used:      # year e.g. 2024
+    evidence:       # link or description
 
   communication_protocols:
-    level:
-    last_used:
-    evidence:
+    level:          # EXPERT / PROFICIENT / FAMILIAR
+    last_used:      # year e.g. 2024
+    evidence:       # link or description
 
   soc_bringup:
-    level:
-    last_used:
-    evidence:
+    level:          # EXPERT / PROFICIENT / FAMILIAR
+    last_used:      # year e.g. 2024
+    evidence:       # link or description
 
   # ── SYSTEMS ──
   os_internals:
-    level:
-    last_used:
-    evidence:
+    level:          # EXPERT / PROFICIENT / FAMILIAR
+    last_used:      # year e.g. 2024
+    evidence:       # link or description
 
   linux_kernel:
-    level:
-    last_used:
-    evidence:
+    level:          # EXPERT / PROFICIENT / FAMILIAR
+    last_used:      # year e.g. 2024
+    evidence:       # link or description
 
   performance_engineering:
-    level:
-    last_used:
-    evidence:
+    level:          # EXPERT / PROFICIENT / FAMILIAR
+    last_used:      # year e.g. 2024
+    evidence:       # link or description
 
   distributed_systems:
-    level:
-    last_used:
-    evidence:
+    level:          # EXPERT / PROFICIENT / FAMILIAR
+    last_used:      # year e.g. 2024
+    evidence:       # link or description
 
   cloud:
-    level:
-    last_used:
-    evidence:
+    level:          # EXPERT / PROFICIENT / FAMILIAR
+    last_used:      # year e.g. 2024
+    evidence:       # link or description
 
   kubernetes:
-    level:
-    last_used:
-    evidence:
+    level:          # EXPERT / PROFICIENT / FAMILIAR
+    last_used:      # year e.g. 2024
+    evidence:       # link or description
 
   # ── SOFTWARE ──
   python:
-    level:
-    last_used:
-    evidence:
+    level:          # EXPERT / PROFICIENT / FAMILIAR
+    last_used:      # year e.g. 2024
+    evidence:       # link or description
 
   cpp:
-    level:
-    last_used:
-    evidence:
+    level:          # EXPERT / PROFICIENT / FAMILIAR
+    last_used:      # year e.g. 2024
+    evidence:       # link or description
 
   golang:
-    level:
-    last_used:
-    evidence:
+    level:          # EXPERT / PROFICIENT / FAMILIAR
+    last_used:      # year e.g. 2024
+    evidence:       # link or description
 
   backend_apis:
-    level:
-    last_used:
-    evidence:
+    level:          # EXPERT / PROFICIENT / FAMILIAR
+    last_used:      # year e.g. 2024
+    evidence:       # link or description
 
   databases:
-    level:
-    last_used:
-    evidence:
+    level:          # EXPERT / PROFICIENT / FAMILIAR
+    last_used:      # year e.g. 2024
+    evidence:       # link or description
 
   data_pipelines:
-    level:
-    last_used:
-    evidence:
+    level:          # EXPERT / PROFICIENT / FAMILIAR
+    last_used:      # year e.g. 2024
+    evidence:       # link or description
 
   react_typescript:
-    level:
-    last_used:
-    evidence:
+    level:          # EXPERT / PROFICIENT / FAMILIAR
+    last_used:      # year e.g. 2024
+    evidence:       # link or description
 
   mobile:
-    level:
-    last_used:
-    evidence:
+    level:          # EXPERT / PROFICIENT / FAMILIAR
+    last_used:      # year e.g. 2024
+    evidence:       # link or description
 
   # ── AI / ML ──
   llm_integration:
-    level:
-    last_used:
-    evidence:
+    level:          # EXPERT / PROFICIENT / FAMILIAR
+    last_used:      # year e.g. 2024
+    evidence:       # link or description
 
   agents:
-    level:
-    last_used:
-    evidence:
+    level:          # EXPERT / PROFICIENT / FAMILIAR
+    last_used:      # year e.g. 2024
+    evidence:       # link or description
 
   rag:
-    level:
-    last_used:
-    evidence:
+    level:          # EXPERT / PROFICIENT / FAMILIAR
+    last_used:      # year e.g. 2024
+    evidence:       # link or description
 
   ml_frameworks:
-    level:
-    last_used:
-    evidence:
+    level:          # EXPERT / PROFICIENT / FAMILIAR
+    last_used:      # year e.g. 2024
+    evidence:       # link or description
 
   mlops:
-    level:
-    last_used:
-    evidence:
+    level:          # EXPERT / PROFICIENT / FAMILIAR
+    last_used:      # year e.g. 2024
+    evidence:       # link or description
 
   prompt_engineering:
-    level:
-    last_used:
-    evidence:
+    level:          # EXPERT / PROFICIENT / FAMILIAR
+    last_used:      # year e.g. 2024
+    evidence:       # link or description
 
   ml_hardware:
-    level:
-    last_used:
-    evidence:
+    level:          # EXPERT / PROFICIENT / FAMILIAR
+    last_used:      # year e.g. 2024
+    evidence:       # link or description
 
   nlp:
-    level:
-    last_used:
-    evidence:
+    level:          # EXPERT / PROFICIENT / FAMILIAR
+    last_used:      # year e.g. 2024
+    evidence:       # link or description
 
   # ── LEGAL TECH ──
   legal_ai:
-    level:
-    last_used:
-    evidence:
+    level:          # EXPERT / PROFICIENT / FAMILIAR
+    last_used:      # year e.g. 2024
+    evidence:       # link or description
 
   compliance_automation:
-    level:
-    last_used:
-    evidence:
+    level:          # EXPERT / PROFICIENT / FAMILIAR
+    last_used:      # year e.g. 2024
+    evidence:       # link or description
 
   # ── FINTECH ──
   finance_ai:
-    level:
-    last_used:
-    evidence:
+    level:          # EXPERT / PROFICIENT / FAMILIAR
+    last_used:      # year e.g. 2024
+    evidence:       # link or description
 
   risk_modeling:
-    level:
-    last_used:
-    evidence:
+    level:          # EXPERT / PROFICIENT / FAMILIAR
+    last_used:      # year e.g. 2024
+    evidence:       # link or description
 
   # ── LEADERSHIP ──
   technical_leadership:
-    level:
-    last_used:
-    evidence:
+    level:          # EXPERT / PROFICIENT / FAMILIAR
+    last_used:      # year e.g. 2024
+    evidence:       # link or description
 
   cross_functional:
-    level:
-    last_used:
-    evidence:
+    level:          # EXPERT / PROFICIENT / FAMILIAR
+    last_used:      # year e.g. 2024
+    evidence:       # link or description
 
   system_design:
-    level:
-    last_used:
-    evidence:
+    level:          # EXPERT / PROFICIENT / FAMILIAR
+    last_used:      # year e.g. 2024
+    evidence:       # link or description

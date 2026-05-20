@@ -11,6 +11,8 @@ Rate each: EXPERT / PROFICIENT / FAMILIAR | Evidence: link or description
 | SoC Architecture | | |
 | Timing Closure / STA | | |
 | Synthesis (DC, Genus) | | |
+| Hardware Verification (UVM/cocotb) | | |
+| FPGA Design | | |
 
 ## Embedded & Firmware
 | Skill | Level | Evidence |
@@ -54,6 +56,10 @@ Rate each: EXPERT / PROFICIENT / FAMILIAR | Evidence: link or description
 | RAG / Vector DBs | | |
 | Fine-tuning | | |
 | ML Ops | | |
+| ML Frameworks (PyTorch / TF / JAX) | | |
+| Prompt Engineering & Evaluation | | |
+| NLP | | |
+| ML Hardware / Accelerators | | |
 
 ## Vertical Domains
 | Domain | Skill | Evidence |
@@ -66,7 +72,8 @@ Rate each: EXPERT / PROFICIENT / FAMILIAR | Evidence: link or description
 ## Leadership / Cross-functional
 | Skill | Level | Evidence |
 |-------|-------|----------|
-| Technical roadmapping | | |
+| Technical roadmapping / Technical leadership | | |
 | Cross-functional collaboration | | |
+| System Design | | |
 | Hiring / mentoring | | |
 | Stakeholder communication | | |
