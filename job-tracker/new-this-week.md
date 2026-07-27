@@ -1,10 +1,10 @@
-# New Roles — 2026-07-13
+# New Roles — 2026-07-27
 
 1 new roles across 1 sources.
 
 ---
 
-## careers/Infineon (1)
+## careers/ARM (1)
 
-- **DRIVECORE™ for PSOC™ Automotive** @ Infineon — See listing
-  https://www.infineon.com/design-resources/platforms/drive-core/psoc-automotive-drive-core
+- **Validation Engineer (Pre & Post Silicon Functional Validation)** @ ARM — See listing
+  https://www.arm.com/job/bengaluru/validation-engineer-pre-and-post-silicon-functional-validation/33099/98353989648
