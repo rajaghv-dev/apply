@@ -1,12 +1,10 @@
-# New Roles — 2026-08-24
+# New Roles — 2026-08-31
 
-2 new roles across 1 sources.
+1 new roles across 1 sources.
 
 ---
 
-## careers/ARM (2)
+## careers/Infineon (1)
 
-- **Embedded Compiler Engineer (Machine Learning)** @ ARM — See listing
-  https://www.arm.com/job/lund/embedded-compiler-engineer-machine-learning/33099/94847322016
-- **SoC Offensive Security Staff Engineer** @ ARM — See listing
-  https://www.arm.com/job/austin/soc-offensive-security-staff-engineer/33099/97492009136
+- **Infineon to complete limited Share Buyback Program serving fulfillment of obligations under existing employee participation programs** @ Infineon — See listing
+  https://www.infineon.com/press-release/2026/infpr202608-130
