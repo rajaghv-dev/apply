@@ -1,10 +1,12 @@
-# New Roles — 2026-09-28
+# New Roles — 2026-10-05
 
-1 new roles across 1 sources.
+2 new roles across 1 sources.
 
 ---
 
-## careers/ARM (1)
+## careers/Infineon (2)
 
-- **Principal/Senior Principal Engineer – Arm Architecture Reference Manual (ARM)** @ ARM — See listing
-  https://www.arm.com/job/cambridge/principal-senior-principal-engineer-arm-architecture-reference-manual-arm/33099/93988215360
+- **Silicon Carbide Bidirectional Switches** @ Infineon — See listing
+  https://www.infineon.com/products/power/mosfet/silicon-carbide/silicon-carbide-bidirectional-switches
+- **Infineon and Eaton leverage silicon carbide technology to advance solid-state transformers for 800 VDC AI data center power architectures** @ Infineon — See listing
+  https://www.infineon.com/press-release/2026/infpr202609-146
