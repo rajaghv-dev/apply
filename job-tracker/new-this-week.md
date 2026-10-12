@@ -1,12 +1,10 @@
-# New Roles — 2026-10-05
+# New Roles — 2026-10-12
 
-2 new roles across 1 sources.
+1 new roles across 1 sources.
 
 ---
 
-## careers/Infineon (2)
+## careers/ARM (1)
 
-- **Silicon Carbide Bidirectional Switches** @ Infineon — See listing
-  https://www.infineon.com/products/power/mosfet/silicon-carbide/silicon-carbide-bidirectional-switches
-- **Infineon and Eaton leverage silicon carbide technology to advance solid-state transformers for 800 VDC AI data center power architectures** @ Infineon — See listing
-  https://www.infineon.com/press-release/2026/infpr202609-146
+- **SoC Interconnect Technology Team Lead** @ ARM — See listing
+  https://www.arm.com/job/toronto/soc-interconnect-technology-team-lead/33099/98068118224
