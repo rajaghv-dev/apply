@@ -1,10 +1,15 @@
-# New Roles — 2026-10-26
+# New Roles — 2026-11-02
 
-1 new roles across 1 sources.
+2 new roles across 2 sources.
 
 ---
 
 ## careers/ARM (1)
 
-- **SoC PnP Architect** @ ARM — See listing
-  https://www.arm.com/job/bengaluru/soc-pnp-architect/33099/102455064496
+- **Compiler Engineer (Machine Learning)** @ ARM — See listing
+  https://www.arm.com/job/lund/compiler-engineer-machine-learning/33099/94847322016
+
+## careers/NXP (1)
+
+- **Spotlight on Bright Minds: From the NXP Cup to Real-World Embedded Software** @ NXP — See listing
+  https://www.nxp.com/company/about-nxp/smarter-world-blog/BL-NXP-CUP-EMBEDDED-SOFTWARE
