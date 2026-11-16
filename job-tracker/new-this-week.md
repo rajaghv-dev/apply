@@ -1,15 +1,10 @@
-# New Roles — 2026-11-02
+# New Roles — 2026-11-16
 
-2 new roles across 2 sources.
+1 new roles across 1 sources.
 
 ---
 
 ## careers/ARM (1)
 
-- **Compiler Engineer (Machine Learning)** @ ARM — See listing
-  https://www.arm.com/job/lund/compiler-engineer-machine-learning/33099/94847322016
-
-## careers/NXP (1)
-
-- **Spotlight on Bright Minds: From the NXP Cup to Real-World Embedded Software** @ NXP — See listing
-  https://www.nxp.com/company/about-nxp/smarter-world-blog/BL-NXP-CUP-EMBEDDED-SOFTWARE
+- **Staff SoC Verification Engineer** @ ARM — See listing
+  https://www.arm.com/job/austin/staff-soc-verification-engineer/33099/99734778464
